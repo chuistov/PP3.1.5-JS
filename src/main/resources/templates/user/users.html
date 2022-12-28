@@ -26,7 +26,9 @@
                     </form>
                 </td>
                 <td>
-                    <a th:href="@{/user/{id}/edit(id=${user.getId()})}" text="Update User">Update User</a>
+                    <form th:method="GET" th:action="@{/user/{id}/edit(id=${user.getId()})}">
+                        <input type="submit" value="Update User">
+                    </form>
                 </td>
                 <td>
                     <form th:method="DELETE" th:action="@{/user/{id}(id=${user.getId()})}" th:object="${user}">
@@ -38,7 +40,9 @@
     </table>
     <br/>
     <hr/>
-    <a href="/user/new" text="Add User">Add User</a>
+    <form th:method="GET" th:action="@{/user/new}">
+        <input type="submit" value="Add User">
+    </form>
 
 </body>
 </html>

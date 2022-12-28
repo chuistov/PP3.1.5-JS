@@ -22,6 +22,8 @@
         </tr>
     </table>
 
-    <a href="/user">Show all users</a>
+    <form th:method="GET" th:action="@{/user}">
+        <input type="submit" value="Show All Users">
+    </form>
 </body>
 </html>
