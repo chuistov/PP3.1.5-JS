@@ -1,6 +1,8 @@
 package ru.chuistov.springboot.crud.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +14,12 @@ import ru.chuistov.springboot.crud.services.UserService;
 public class UserController {
 
     private final UserService userService;
+    private final ApplicationContext context;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ApplicationContext context) {
         this.userService = userService;
+        this.context = context;
     }
 
     @GetMapping()
@@ -59,5 +63,10 @@ public class UserController {
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteById(id);
         return "redirect:/user";
+    }
+
+    @RequestMapping("/exit")
+    public void shutdown() {
+        System.exit(SpringApplication.exit(context, () -> 0));
     }
 }
