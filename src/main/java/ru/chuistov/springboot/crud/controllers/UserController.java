@@ -47,13 +47,16 @@ public class UserController {
 
     @GetMapping("/{id}/edit")
     public String startUpdateUser(@PathVariable("id") long id, Model model) {
-        model.addAttribute("user", userService.findById(id));
+        User user = userService.findById(id);
+        model.addAttribute("user", user);
+        System.out.println("Method: startUpdateUser(). Password: " + user.getPassword());
         return "user/edit";
     }
 
     @PatchMapping("/{id}")
     public String finishUpdateUser(@ModelAttribute("user") User user,
                                    @PathVariable("id") long id) {
+        System.out.println("Method: finishUpdateUser(). Password: " + user.getPassword());
         userService.update(user);
         return "redirect:/user";
     }
