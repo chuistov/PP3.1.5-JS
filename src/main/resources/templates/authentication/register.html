@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add user</title>
+    <title>Register</title>
 </head>
 <body>
-    <form th:method="POST" th:action="@{/user}" th:object="${user}">
+    <h3>Welcome to registration page! Please fill all fields.</h3>
+
+    <form th:method="POST" th:action="@{/authentication/register}" th:object="${user}">
         <input th:field="*{name}" type="text" id="name" placeholder="name"/>
         <br/>
         <input th:field="*{lastName}" type="text" id="last_name" placeholder="last name"/>
@@ -17,14 +18,7 @@
         <br/>
         <input th:field="*{password}" type="password" id="password" placeholder="password"/>
         <br/>
-        <input type="submit" value="Add User">
+        <input type="submit" value="Sign up">
     </form>
-
-    <br/>
-
-    <form th:method="POST" th:action="@{/logout}">
-        <input type="submit" value="Logout">
-    </form>
-
 </body>
 </html>

@@ -13,17 +13,25 @@
             <th>Name</th>
             <th>Last Name</th>
             <th>Age</th>
+            <th>Email</th>
+            <th>Password</th>
         </tr>
         <tr>
             <td th:text="${user.getId()}"></td>
             <td th:text="${user.getName()}"></td>
             <td th:text="${user.getLastName()}"></td>
             <td th:text="${user.getAge()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td th:text="${user.getPassword()}"></td>
         </tr>
     </table>
 
     <form th:method="GET" th:action="@{/user}">
         <input type="submit" value="Show All Users">
+    </form>
+
+    <form th:method="POST" th:action="@{/logout}">
+        <input type="submit" value="Logout">
     </form>
 </body>
 </html>

@@ -1,16 +1,17 @@
 package ru.chuistov.springboot.crud.entities;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(schema = "repository", name = "user")
-//@NamedQuery(name = "User.getAll", query = "SELECT u from User u")
 public class User {
 
     @Id
@@ -26,9 +27,24 @@ public class User {
     @Column
     private int age;
 
+    // Unique username
+    @Column
+    private String email;
+
+    @Column
+    private String password;
+
     public User(String name, String lastName, int age) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
+    }
+
+    public User(String name, String lastName, int age, String email, String password) {
+        this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+        this.password = password;
     }
 }

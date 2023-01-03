@@ -1,15 +1,18 @@
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+table, th, td
+{
+    border-style:solid;
+    border-width:1px;
+    border-collapse:collapse;
+    padding:2px;
 }
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
+th
+{
+    height:28px;
+    background-color: cadetblue;
+    color:white;
+    border-color:black;
 }
-
-tr:nth-child(even) {
-    background-color: #dddddd;
+.ts1
+{
+    background-color:#ffeffb;
 }

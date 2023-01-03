@@ -35,8 +35,7 @@ public class UserController {
     }
 
     @GetMapping("/new")
-    public String startCreateUser(Model model) {
-        model.addAttribute("user", new User("name", "last name", 0));
+    public String startCreateUser(@ModelAttribute("user") User user) {
         return "user/new";
     }
 
@@ -63,10 +62,5 @@ public class UserController {
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteById(id);
         return "redirect:/user";
-    }
-
-    @RequestMapping("/exit")
-    public void shutdown() {
-        System.exit(SpringApplication.exit(context, () -> 0));
     }
 }
