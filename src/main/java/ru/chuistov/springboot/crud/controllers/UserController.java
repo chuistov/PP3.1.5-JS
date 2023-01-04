@@ -1,12 +1,12 @@
 package ru.chuistov.springboot.crud.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.chuistov.springboot.crud.entities.User;
+import ru.chuistov.springboot.crud.services.RoleService;
 import ru.chuistov.springboot.crud.services.UserService;
 
 @Controller
@@ -14,11 +14,13 @@ import ru.chuistov.springboot.crud.services.UserService;
 public class UserController {
 
     private final UserService userService;
+    private final RoleService roleService;
     private final ApplicationContext context;
 
     @Autowired
-    public UserController(UserService userService, ApplicationContext context) {
+    public UserController(UserService userService, RoleService roleService, ApplicationContext context) {
         this.userService = userService;
+        this.roleService = roleService;
         this.context = context;
     }
 
@@ -30,6 +32,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public String showUser(@PathVariable("id") long id, Model model) {
+        System.out.println(userService.findById(id)); // TODO delete
         model.addAttribute("user", userService.findById(id));
         return "user/user";
     }

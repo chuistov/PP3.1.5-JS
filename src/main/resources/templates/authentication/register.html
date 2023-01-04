@@ -18,6 +18,13 @@
         <br/>
         <input th:field="*{password}" type="password" id="password" placeholder="password"/>
         <br/>
+        <input th:field="*{roles}" type="checkbox" name="roles"
+               th:each="role : ${roles}"
+               th:text="${role.roleName}"
+               th:value="${role.id}"
+        />
+        <br/>
+
         <input type="submit" value="Sign up">
     </form>
 </body>

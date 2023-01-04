@@ -7,6 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -27,12 +30,21 @@ public class User {
     @Column(nullable = false)
     private int age;
 
-    // Unique username
+    // Used as a unique username
     @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Set<Role> roles = new HashSet<>();
 
     public User(String name, String lastName, int age) {
         this.name = name;
