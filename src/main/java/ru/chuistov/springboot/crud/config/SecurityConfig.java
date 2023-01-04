@@ -26,14 +26,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-//            .csrf().disable() // anti-csrf defense disabled
             .authorizeRequests()                // authorization
                 .antMatchers(
                         "/",
                         "/authentication/login",
                         "/authentication/register",
                         "/error"
-                        ).permitAll() // the only pages for non-authenticated person
+                        ).permitAll() // the only pages accessible by non-authenticated person
                 .anyRequest().authenticated()   // all other pages only after authentication
             .and()
             .formLogin()                                // form for entering username and password

@@ -42,9 +42,7 @@ public class UserService {
 
     @Transactional
     public void update(User user) {
-        System.out.println("Method: update(). Password before saving: " + user.getPassword());
         userRepository.save(user);
-        System.out.println("Method: update(). Password after saving: " + user.getPassword());
     }
 
     public List<User> findAll() {
