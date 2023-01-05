@@ -52,6 +52,7 @@ public class UserController {
     public String startUpdateUser(@PathVariable("id") long id, Model model) {
         User user = userService.findById(id);
         model.addAttribute("user", user);
+        model.addAttribute("allRoles", roleService.findAll());
         return "user/edit";
     }
 

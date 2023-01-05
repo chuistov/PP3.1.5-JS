@@ -9,21 +9,11 @@
 <body>
     <table>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Last Name</th>
-            <th>Age</th>
             <th>Email</th>
-            <th>Password</th>
         </tr>
         <th:block th:each="user : ${users}">
             <tr>
-                <td th:text="${user.getId()}"></td>
-                <td th:text="${user.getName()}"></td>
-                <td th:text="${user.getLastName()}"></td>
-                <td th:text="${user.getAge()}"></td>
                 <td th:text="${user.getEmail()}"></td>
-                <td th:text="${user.getPassword()}"></td>
 
                 <td>
                     <form th:method="GET" th:action="@{/user/{id}(id=${user.getId()})}">

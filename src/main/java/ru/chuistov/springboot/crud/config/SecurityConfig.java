@@ -8,8 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import ru.chuistov.springboot.crud.security.LoginSuccessHandler;
 import ru.chuistov.springboot.crud.services.UserDetailsServiceImpl;
 
 // security needs
@@ -17,10 +17,13 @@ import ru.chuistov.springboot.crud.services.UserDetailsServiceImpl;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
+    private final LoginSuccessHandler loginSuccessHandler;
 
     @Autowired
-    public SecurityConfig(UserDetailsServiceImpl userDetailsService) {
+    public SecurityConfig(UserDetailsServiceImpl userDetailsService,
+                          LoginSuccessHandler loginSuccessHandler) {
         this.userDetailsService = userDetailsService;
+        this.loginSuccessHandler = loginSuccessHandler;
     }
 
     @Override
@@ -37,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .formLogin()                                // form for entering username and password
                 .loginPage("/authentication/login")     // form page URL
+              //  .successHandler(loginSuccessHandler)
                 .loginProcessingUrl("/process_login")   // URL of page for processing username and password (for Spring Security)
                 .defaultSuccessUrl("/user", true) // URL to go in case of success
                 .failureUrl("/authentication/login?error") // URL to go after entering wrong username or password

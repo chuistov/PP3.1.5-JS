@@ -30,7 +30,7 @@ public class AuthenticationController {
     }
 
     @GetMapping("/register")
-    public String registrationPage(/*@ModelAttribute("user") User user*/ Model model) {
+    public String registrationPage(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("roles", registrationService.getAllAvailableRoles());
         return "authentication/register";

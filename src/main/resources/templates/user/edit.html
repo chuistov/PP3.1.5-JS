@@ -19,6 +19,12 @@
         <label for="email">Email: </label>
         <input th:field="*{email}" type="text" id="email"/>
         <br/>
+        <label for="roles">Roles:</label>
+        <input type="checkbox" name="roles" id="roles"
+                th:each="role : ${allRoles}"
+                th:text="${role.roleName}"
+                th:value="${role.id}"/> <!--нужно, чтобы флажок был установлен, если у юзера есть такая роль-->
+        <br/>
         <input th:field="*{password}" type="text" id="password" hidden/>
         <br/>
         <input type="submit" value="Update User">
