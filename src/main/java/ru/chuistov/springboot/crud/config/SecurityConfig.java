@@ -40,9 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .formLogin()                                // form for entering username and password
                 .loginPage("/authentication/login")     // form page URL
-              //  .successHandler(loginSuccessHandler)
                 .loginProcessingUrl("/process_login")   // URL of page for processing username and password (for Spring Security)
-                .defaultSuccessUrl("/user", true) // URL to go in case of success
+                .successHandler(loginSuccessHandler)
+//                .defaultSuccessUrl("/user", true) // URL to go in case of success
                 .failureUrl("/authentication/login?error") // URL to go after entering wrong username or password
             .and()
             .logout()

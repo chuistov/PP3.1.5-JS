@@ -38,7 +38,6 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute("user") User user) {
-        System.out.println(user); // TODO delete
         registrationService.register(user);
         return "redirect:/login";
     }
