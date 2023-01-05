@@ -36,6 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/authentication/register",
                         "/error"
                         ).permitAll() // the only pages accessible by non-authenticated person
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/user").hasRole("USER")
                 .anyRequest().authenticated()   // all other pages only after authentication
             .and()
             .formLogin()                                // form for entering username and password

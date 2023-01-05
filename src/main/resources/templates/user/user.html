@@ -1,6 +1,8 @@
+<!--<% taglib prefix="security" uri="http://www.springframework.org/security/tags" %>-->
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://thymeleaf.org">
+      xmlns:th="http://thymeleaf.org"
+      xmlns:security="http://www.springframework.org/security/tags">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/css/users_style.css"/>
@@ -26,9 +28,11 @@
         </tr>
     </table>
 
-    <form th:method="GET" th:action="@{/user}">
-        <input type="submit" value="Show All Users">
-    </form>
+    <security:authorize access="hasRole('ADMIN')">
+        <form th:method="GET" th:action="@{/admin}">
+            <input type="submit" value="Show All Users">
+        </form>
+    </security:authorize>
 
     <form th:method="POST" th:action="@{/logout}">
         <input type="submit" value="Logout">

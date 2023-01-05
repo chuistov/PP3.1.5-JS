@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://thymeleaf.org">
+      xmlns:th="http://thymeleaf.org"
+      xmlns:security="http://www.springframework.org/security/tags">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/css/users_style.css"/>
@@ -15,11 +16,6 @@
         <tr>
             <td th:text="${user.getEmail()}"></td>
 
-<!--            <td>-->
-<!--                <form th:method="GET" th:action="@{/user}">-->
-<!--                    <input type="submit" value="User Details">-->
-<!--                </form>-->
-<!--            </td>-->
             <td>
                 <form th:method="GET" th:action="@{/admin/{id}/edit(id=${user.getId()})}">
                     <input type="submit" value="Update User">
@@ -42,9 +38,11 @@
 
 <br/>
 
-<form th:method="GET" th:action="@{/user}">
-    <input type="submit" value="My user page">
-</form>
+<security:authorize access="hasRole('USER')">
+    <form th:method="GET" th:action="@{/user}">
+        <input type="submit" value="My user page">
+    </form>
+</security:authorize>
 
 <br/>
 
