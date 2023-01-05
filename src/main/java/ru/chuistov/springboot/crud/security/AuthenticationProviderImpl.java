@@ -42,4 +42,8 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
     public boolean supports(Class<?> authentication) {
         return true; // always true because there is only one auth provider
     }
+
+    public UserDetailsServiceImpl getUserDetailsService() {
+        return userDetailsService;
+    }
 }

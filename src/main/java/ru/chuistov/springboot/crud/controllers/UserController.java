@@ -2,70 +2,78 @@ package ru.chuistov.springboot.crud.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.chuistov.springboot.crud.entities.User;
+import ru.chuistov.springboot.crud.security.UserDetailsImpl;
 import ru.chuistov.springboot.crud.services.RoleService;
 import ru.chuistov.springboot.crud.services.UserService;
 
+import java.security.Principal;
+
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/")
 public class UserController {
 
     private final UserService userService;
     private final RoleService roleService;
-    private final ApplicationContext context;
 
     @Autowired
-    public UserController(UserService userService, RoleService roleService, ApplicationContext context) {
+    public UserController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
-        this.context = context;
     }
 
-    @GetMapping()
-    public String showAllUsers(Model model) {
+    @GetMapping("/admin")
+    public String showAdminPage(Model model) {
         model.addAttribute("users", userService.findAll());
-        return "user/users";
+        return "admin";
     }
 
-    @GetMapping("/{id}")
-    public String showUser(@PathVariable("id") long id, Model model) {
-        System.out.println(userService.findById(id)); // TODO delete
-        model.addAttribute("user", userService.findById(id));
-        return "user/user";
+    @GetMapping("/user")
+    public String showUserPage(Model model) {
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetailsImpl userDetails) {
+            model.addAttribute("user", userDetails.getUser());
+        }
+
+        return "user";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/admin/new")
     public String startCreateUser(@ModelAttribute("user") User user) {
-        return "user/new";
+        return "admin/new";
     }
 
-    @PostMapping()
+    @PostMapping("/admin")
     public String finishCreateUser(@ModelAttribute("user") User user) {
         userService.save(user);
-        return "redirect:/user";
+        return "redirect:/admin";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping("/admin/{id}/edit")
     public String startUpdateUser(@PathVariable("id") long id, Model model) {
         User user = userService.findById(id);
         model.addAttribute("user", user);
         model.addAttribute("allRoles", roleService.findAll());
-        return "user/edit";
+        return "admin/edit";
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/admin/{id}")
     public String finishUpdateUser(@ModelAttribute("user") User user,
                                    @PathVariable("id") long id) {
         userService.update(user);
-        return "redirect:/user";
+        return "redirect:/admin";
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/{id}")
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteById(id);
-        return "redirect:/user";
+        return "redirect:/admin";
     }
 }
