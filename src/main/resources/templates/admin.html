@@ -38,7 +38,7 @@
 
 <br/>
 
-<security:authorize access="hasRole('USER')">
+<security:authorize access="hasRole('ROLE_USER')">
     <form th:method="GET" th:action="@{/user}">
         <input type="submit" value="My user page">
     </form>

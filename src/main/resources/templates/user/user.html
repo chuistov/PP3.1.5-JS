@@ -28,7 +28,7 @@
         </tr>
     </table>
 
-    <security:authorize access="hasRole('ADMIN')">
+    <security:authorize access="hasRole('ROLE_ADMIN')">
         <form th:method="GET" th:action="@{/admin}">
             <input type="submit" value="Show All Users">
         </form>
