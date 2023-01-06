@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:security="http://www.springframework.org/security/tags">
 <head>
     <meta charset="UTF-8">
@@ -38,7 +38,7 @@
 
 <br/>
 
-<security:authorize access="hasRole('ROLE_USER')">
+<security:authorize access="hasRole('ROLE_USER')"> <!--ПОЧЕМУ НЕ РАБОТАЕТ???-->
     <form th:method="GET" th:action="@{/user}">
         <input type="submit" value="My user page">
     </form>
