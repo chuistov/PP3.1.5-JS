@@ -34,6 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/",
                         "/authentication/login",
                         "/authentication/register",
+                        "/css/**",
+                        "/js/**",
                         "/error"
                         ).permitAll() // the only pages accessible by non-authenticated person
                 .antMatchers("/admin/**").hasRole("ADMIN")

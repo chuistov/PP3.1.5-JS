@@ -1,31 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
     <title>Register</title>
 </head>
 <body>
-    <h3>Welcome to registration page! Please fill all fields.</h3>
+    <div class="login">
+        <h4>Please fill all fields</h4>
 
-    <form th:method="POST" th:action="@{/authentication/register}" th:object="${user}">
-        <input th:field="*{name}" type="text" id="name" placeholder="name"/>
-        <br/>
-        <input th:field="*{lastName}" type="text" id="last_name" placeholder="last name"/>
-        <br/>
-        <input th:field="*{age}" type="text" id="age" placeholder="age"/>
-        <br/>
-        <input th:field="*{email}" type="text" id="email" placeholder="email - your future login"/>
-        <br/>
-        <input th:field="*{password}" type="password" id="password" placeholder="password"/>
-        <br/>
-        <input th:field="*{roles}" type="checkbox" name="roles"
-               th:each="role : ${roles}"
-               th:text="${role.roleName}"
-               th:value="${role.id}"
-        />
-        <br/>
+        <form th:method="POST" th:action="@{/authentication/register}" th:object="${user}">
+            <h6>First Name</h6>
+            <input class="login-text-field" th:field="*{name}" type="text"/>
+            <h6>Last Name</h6>
+            <input class="login-text-field" th:field="*{lastName}" type="text"/>
+            <h6>Age</h6>
+            <input class="login-text-field" th:field="*{age}" type="text"/>
+            <h6>Email Address</h6>
+            <input class="login-text-field" th:field="*{email}" type="text"/>
+            <h6>Password</h6>
+            <input class="login-text-field" th:field="*{password}" type="password"/>
 
-        <input type="submit" value="Sign up">
-    </form>
+            <h6>Roles</h6>
+            <input th:field="*{roles}" type="checkbox" name="roles"
+                   th:each="role : ${roles}"
+                   th:text="${role.roleName}"
+                   th:value="${role.id}"
+            />
+
+            <input class="login-button" type="submit" value="Sign up">
+        </form>
+    </div>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -18,21 +18,23 @@ import java.util.List;
 public class AuthenticationController {
 
     private final RegistrationService registrationService;
+    private final List<Role> allRoles;
 
     @Autowired
     public AuthenticationController(RegistrationService registrationService) {
         this.registrationService = registrationService;
+        allRoles = registrationService.getAllAvailableRoles();
     }
 
     @GetMapping("/login")
-    public String loginPage() {
+    public String openLoginPage() {
         return "authentication/login";
     }
 
     @GetMapping("/register")
-    public String registrationPage(Model model) {
+    public String openRegistrationPage(Model model) {
         model.addAttribute("user", new User());
-        model.addAttribute("roles", registrationService.getAllAvailableRoles());
+        model.addAttribute("roles", allRoles);
         return "authentication/register";
     }
 

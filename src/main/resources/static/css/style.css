@@ -1,0 +1,54 @@
+/* Login page stylesheet*/
+.login {
+    width: 250px;
+    margin: 100px auto;
+}
+.login h4 {
+    font-weight: 900;
+    margin-top: 20px;
+}
+.login h6 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.login input {
+    width: 100%;
+}
+.login .login-button {
+    margin-top: 5px;
+    border-radius: 5px;
+    border-color: dodgerblue;
+    background-color: dodgerblue;
+    color: white;
+}
+.login .login-text-field {
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+.login .login-text-field:focus {
+    box-shadow: 0 0 2px 2px dodgerblue;
+}
+.login p {
+    font-size: .8em;
+    font-style: italic;
+}
+
+
+
+
+
+table, th, td {
+    border-style:solid;
+    border-width:1px;
+    border-collapse:collapse;
+    padding:2px;
+}
+th {
+    height:28px;
+    background-color: cadetblue;
+    color:white;
+    border-color:black;
+}
+/*.ts1 {
+    background-color:#ffeffb;
+}*/
