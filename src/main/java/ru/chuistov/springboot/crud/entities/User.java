@@ -57,4 +57,8 @@ public class User {
         this.email = email;
         this.password = password;
     }
+
+    public User(List<Role> roles) {
+        this.roles = roles;
+    }
 }

@@ -32,6 +32,15 @@
     font-size: .8em;
     font-style: italic;
 }
+.login ul {
+    list-style-type: none;
+}
+.login .form-check-label {
+    width: 150px;
+}
+.login .form-check-input {
+    width: 20px;
+}
 
 
 

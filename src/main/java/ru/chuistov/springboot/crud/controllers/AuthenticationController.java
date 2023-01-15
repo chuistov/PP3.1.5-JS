@@ -11,6 +11,7 @@ import ru.chuistov.springboot.crud.entities.Role;
 import ru.chuistov.springboot.crud.entities.User;
 import ru.chuistov.springboot.crud.services.RegistrationService;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
