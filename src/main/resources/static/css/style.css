@@ -112,6 +112,7 @@ header .align-right {
 
 /* Table stylesheet */
 .my-table {
+    width: 100%;
     padding: 5px 5px;
     background-color: white;
     caption-side: top;
@@ -127,9 +128,6 @@ caption {
     min-width: 100px;
     padding: 5px 20px;
 }
-/*.my-table tr:hover {
-    font-weight: 500;
-}*/
 .my-table td {
     border-bottom: 2px solid #dcdcda;
 }
@@ -140,3 +138,33 @@ caption {
 /* Matching tabs at admin page */
 #tab1:checked ~ #user-table,
 #tab2:checked ~ #add-user {display: block}
+
+/* Tabs stylesheet*/
+.tabs {
+    width: 100%; padding: 0px; margin: 0 auto;
+}
+.tabs>input {
+    display: none;
+}
+.tabs>div {
+    display: none;
+    padding: 12px;
+    border: 1px solid #C0C0C0;
+    background: #ebebe9;
+}
+.tabs>label {
+    display: inline-block;
+    padding: 7px;
+    margin: 0 -5px -1px 0;
+    text-align: center;
+    color: #666666;
+    border: 1px solid #C0C0C0;
+    background: #E0E0E0;
+    cursor: pointer;
+}
+.tabs>input:checked + label {
+    color: #000000;
+    border: 1px solid #C0C0C0;
+    border-bottom: 1px solid #FFFFFF;
+    background: #FFFFFF;
+}
