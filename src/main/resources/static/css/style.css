@@ -43,6 +43,22 @@
 }
 
 
+header {
+    background-color: #1b1b19;
+    color: white;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px 30px;
+    font-size: 1.5em;
+}
+.logout-button {
+    background-color: #1b1b19;
+    border: #1b1b19;
+    color: #b9bfb3;
+    font-size: .7em;
+}
+
+
 
 
 

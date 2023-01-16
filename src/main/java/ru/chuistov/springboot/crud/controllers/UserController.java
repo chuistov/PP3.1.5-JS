@@ -29,19 +29,14 @@ public class UserController {
 
     @GetMapping("/admin")
     public String showAdminPage(Model model) {
+        model.addAttribute("authorizedUser", getAuthorizedUser());
         model.addAttribute("users", userService.findAll());
         return "admin";
     }
 
     @GetMapping("/user")
     public String showUserPage(Model model) {
-
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetailsImpl userDetails) {
-            model.addAttribute("user", userDetails.getUser());
-        }
-
+        model.addAttribute("user", getAuthorizedUser());
         return "user";
     }
 
@@ -75,5 +70,9 @@ public class UserController {
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteById(id);
         return "redirect:/admin";
+    }
+
+    private User getAuthorizedUser() {
+        return ((UserDetailsImpl)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
     }
 }

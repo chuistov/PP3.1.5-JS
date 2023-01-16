@@ -35,7 +35,7 @@
                 <li th:each="role : ${roles}">
                     <input class="form-check-input"
                            type="checkbox"
-                           th:field="*{roles}" th:value="${role.id}" checked> <!--checked="${role} == 'ROLE_USER'"--> <!--disabled="|${role.roleName} == 'ROLE_USER'|"-->
+                           th:field="*{roles}" th:value="${role.id}" checked>
                     <label class="form-check-label"
                            th:for="${#ids.prev('roles')}" th:text="${role.roleName.substring(5)}">test</label>
                 </li>
