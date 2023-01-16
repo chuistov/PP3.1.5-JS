@@ -52,7 +52,6 @@
                         <th>Last Name</th>
                         <th>Age</th>
                         <th>Email</th>
-                        <!--            <th>Password</th>-->
                         <th>Roles</th>
                     </tr>
                     <tr class="odd">
@@ -60,7 +59,6 @@
                         <td th:text="${authorizedUser.getLastName()}">Last Name</td>
                         <td th:text="${authorizedUser.getAge()}">Age</td>
                         <td th:text="${authorizedUser.getEmail()}">Email</td>
-                        <!--            <td th:text="${authorizedUser.getPassword()}">Password</td>-->
                         <td th:text="${authorizedUser.getRoles()}">Roles</td>
                     </tr>
                 </table>
@@ -68,33 +66,6 @@
             </div>
         </div>
     </div>
-
-<!--    <table>-->
-<!--        <tr>-->
-<!--            <th>Name</th>-->
-<!--            <th>Last Name</th>-->
-<!--            <th>Age</th>-->
-<!--            <th>Email</th>-->
-<!--&lt;!&ndash;            <th>Password</th>&ndash;&gt;-->
-<!--            <th>Roles</th>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td th:text="${authorizedUser.getName()}">First Name</td>-->
-<!--            <td th:text="${authorizedUser.getLastName()}">Last Name</td>-->
-<!--            <td th:text="${authorizedUser.getAge()}">Age</td>-->
-<!--            <td th:text="${authorizedUser.getEmail()}">Email</td>-->
-<!--&lt;!&ndash;            <td th:text="${authorizedUser.getPassword()}">Password</td>&ndash;&gt;-->
-<!--            <td th:text="${authorizedUser.getRoles()}">Roles</td>-->
-<!--        </tr>-->
-<!--    </table>-->
-
-    <br/>
-
-<!--    <div sec:authorize="hasRole('ROLE_ADMIN')">-->
-<!--        <form th:method="GET" th:action="@{/admin}">-->
-<!--            <input type="submit" value="Admin page">-->
-<!--        </form>-->
-<!--    </div>-->
 
     <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
