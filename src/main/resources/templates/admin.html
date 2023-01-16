@@ -16,7 +16,7 @@
             <div class="col-10">
                 <span th:text="${authorizedUser.getEmail()}" style="font-weight: bold">User</span>
                 with roles:
-                <span th:text="${authorizedUser.getRoles()}">roles list</span>
+                <span th:text="${#strings.arrayJoin(authorizedUser.getRoles(), ', ')}">ADMIN, USER</span>
             </div>
             <div class="col-2">
                 <div class="align-right">
@@ -58,11 +58,11 @@
                     </tr>
                     <th:block th:each="user : ${users}">
                         <tr th:class="${userStat.odd} ? 'odd'">
-                            <td th:text="${user.getName()}"></td>
-                            <td th:text="${user.getLastName()}"></td>
-                            <td th:text="${user.getAge()}"></td>
-                            <td th:text="${user.getEmail()}"></td>
-                            <td th:text="${user.getRoles()}"></td>
+                            <td th:text="${user.getName()}">Ivan</td>
+                            <td th:text="${user.getLastName()}">Ivanov</td>
+                            <td th:text="${user.getAge()}">22</td>
+                            <td th:text="${user.getEmail()}">ivanov@gmail.com</td>
+                            <td th:text="${#strings.arrayJoin(user.getRoles(), ', ')}">ADMIN, USER</td>
 
                             <td>
                                 <form th:method="GET" th:action="@{/admin/{id}/edit(id=${user.getId()})}">

@@ -127,13 +127,11 @@ caption {
     min-width: 100px;
     padding: 5px 20px;
 }
-.my-table tr:hover {
+/*.my-table tr:hover {
     font-weight: 500;
-}
+}*/
 .my-table td {
     border-bottom: 2px solid #dcdcda;
-    /*border-bottom: #dcdcda;*/
-    /*border-bottom-width: thin;*/
 }
 .my-table .odd {
     background-color: #dcdcda;
