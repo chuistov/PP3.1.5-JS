@@ -72,7 +72,7 @@ header {
     background-color: white;
 }
 .container .buttons .active-role {
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     background-color: dodgerblue;
     color: white;
     border-radius: 3px;
