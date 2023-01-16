@@ -91,6 +91,7 @@ header {
 .container h1 {
     padding: 10px;
 }
+
 .btn-delete-user, .btn-edit-user {
     border: none;
     border-radius: 3px;
@@ -103,25 +104,30 @@ header {
     background-color: #c92137;
 }
 
-
-
-
 .my-table {
-    margin-top: 100px;
+    border: none;
+    padding: 5px 5px;
+    background-color: white;
+    caption-side: top;
 }
-
-table, th, td {
-    border-style:solid;
-    border-width:1px;
-    border-collapse:collapse;
-    padding:2px;
+caption {
+    background-color: #dcdcda;
+    padding-left: 20px;
+    font-weight: 700;
 }
-th {
-    height:28px;
-    background-color: cadetblue;
-    color:white;
-    border-color:black;
+th, td {
+    min-width: 150px;
+    padding: 5px 20px;
 }
+.my-table .odd {
+    background-color: #dcdcda;
+}
+/*th {*/
+/*    height:28px;*/
+/*    background-color: cadetblue;*/
+/*    color:white;*/
+/*    border-color:black;*/
+/*}*/
 /*.ts1 {
     background-color:#ffeffb;
 }*/
