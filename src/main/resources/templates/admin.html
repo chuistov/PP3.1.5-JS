@@ -79,13 +79,13 @@
                     </th:block>
                 </table>
 
+                <form th:method="GET" th:action="@{/admin/new}">
+                    <input type="submit" value="Add User">
+                </form>
+
             </div>
         </div>
     </div>
-
-    <form th:method="GET" th:action="@{/admin/new}">
-        <input type="submit" value="Add User">
-    </form>
 
     <script src="/js/bootstrap.bundle.min.js"></script>
 </body>

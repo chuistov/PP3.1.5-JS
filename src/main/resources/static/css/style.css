@@ -69,14 +69,13 @@ header .align-right {
     width: 100%;
 }
 .container .buttons {
-    width: 100px;
+    width: 100%;
     margin-right: auto;
     margin-left: 0;
     padding: 0px -12px;
     background-color: white;
 }
 .container .buttons .active-role {
-    /*margin-top: 10px;*/
     background-color: dodgerblue;
     color: white;
     border-radius: 3px;
