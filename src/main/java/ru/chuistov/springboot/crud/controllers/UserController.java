@@ -36,7 +36,7 @@ public class UserController {
 
     @GetMapping("/user")
     public String showUserPage(Model model) {
-        model.addAttribute("user", getAuthorizedUser());
+        model.addAttribute("authorizedUser", getAuthorizedUser());
         return "user";
     }
 

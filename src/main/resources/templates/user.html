@@ -18,12 +18,12 @@
         <th>Roles</th>
     </tr>
     <tr>
-        <td th:text="${user.getName()}"></td>
-        <td th:text="${user.getLastName()}"></td>
-        <td th:text="${user.getAge()}"></td>
-        <td th:text="${user.getEmail()}"></td>
-        <td th:text="${user.getPassword()}"></td>
-        <td th:text="${user.getRoles()}"></td>
+        <td th:text="${authorizedUser.getName()}">First Name</td>
+        <td th:text="${authorizedUser.getLastName()}">Last Name</td>
+        <td th:text="${authorizedUser.getAge()}">Age</td>
+        <td th:text="${authorizedUser.getEmail()}">Email</td>
+        <td th:text="${authorizedUser.getPassword()}">Password</td>
+        <td th:text="${authorizedUser.getRoles()}">Roles</td>
     </tr>
 </table>
 
