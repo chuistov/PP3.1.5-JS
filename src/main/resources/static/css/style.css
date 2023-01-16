@@ -42,7 +42,7 @@
     width: 20px;
 }
 
-
+/*Header in admin and user pages*/
 header {
     background-color: #1b1b19;
     color: white;
@@ -59,8 +59,46 @@ header {
 }
 
 
+/*Container in admin and user pages which contains buttons to choose role and user(s) info */
+.container {
+    margin: 0;
+    width: 100%;
+}
+.container .buttons {
+    width: 100px;
+    margin-right: auto;
+    margin-left: 0;
+    padding: 0px -12px;
+    background-color: white;
+}
+.container .buttons .active-role {
+    margin-top: 10px;
+    background-color: dodgerblue;
+    color: white;
+    border-radius: 3px;
+    padding: 10px 20px;
+
+}
+.container .buttons input {
+    color: dodgerblue;
+    background-color: white;
+    border: none;
+    padding: 20px;
+}
+.container .col-10 {
+    background-color: #ebebe9;
+}
+.container h1 {
+    padding: 10px;
+
+}
 
 
+
+
+.my-table {
+    margin-top: 100px;
+}
 
 table, th, td {
     border-style:solid;
