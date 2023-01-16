@@ -31,6 +31,7 @@
 
     <div class="container">
         <div class="row">
+
             <div class="col-2">
                 <div class="buttons">
                     <div class="active-role">
@@ -43,6 +44,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-10">
                 <h1>Admin panel</h1>
 
@@ -53,6 +55,7 @@
                     <input type="radio" name="inset" value="" id="tab2">
                     <label for="tab2">New user</label>
 
+                    <!-- Tab with table with information about all users and buttons Edit and Delete -->
                     <div id="user-table">
                         <table class="my-table">
                             <caption>All users</caption>
@@ -73,22 +76,115 @@
                                     <td th:text="${user.getEmail()}">ivanov@gmail.com</td>
                                     <td th:text="${#strings.arrayJoin(user.getRoles(), ', ')}">ADMIN, USER</td>
 
-                                    <td>
+                                    <!--<td>
                                         <form th:method="GET" th:action="@{/admin/{id}/edit(id=${user.getId()})}">
                                             <input class="btn-edit-user" type="submit" value="Edit">
                                         </form>
+                                    </td>-->
+
+                                    <!-- Opening modal window for editing the user -->
+                                    <td>
+                                        <button type="button" class="btn-edit-user" data-bs-toggle="modal" data-bs-target="#editUserModal">
+                                            Edit
+                                        </button>
                                     </td>
 
-                                    <td>
+                                    <!--<td>
                                         <form th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}" th:object="${user}">
                                             <input class="btn-delete-user" type="submit" value="Delete">
                                         </form>
+                                    </td>-->
+
+
+                                    <!-- Open modal window for deleting the user -->
+                                    <td>
+                                        <button type="button" class="btn-delete-user" data-bs-toggle="modal" data-bs-target="#deleteUserModal">
+                                            Delete
+                                        </button>
                                     </td>
                                 </tr>
                             </th:block>
                         </table>
+
+                        <!--&lt;!&ndash; Кнопка-триггер модального окна &ndash;&gt;
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Запустите демо модального окна
+                        </button>-->
+
+                        <!-- Modal window for editing user -->
+                        <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editUserModalLabel">Edit user</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal for deleting user -->
+                        <!--<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteUserModalLabel">Edit user</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        ...
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+
+
+                        <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteUserModalLabel">Delete user</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+
+
+
+                                        <!--<form class="delete-user" th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}">
+
+                                            <h6>First Name</h6>
+                                            <input th:field="${user.getName()}" type="text"/>
+
+                                            <h6>Last Name</h6>
+                                            <input th:field="${user.getLastName()}" type="text"/>
+
+                                            <input type="submit" value="Delete">
+                                        </form>-->
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
+                    <!-- Tab for adding new user-->
                     <div id="add-user">
                         <h6>Please fill all fields</h6>
 

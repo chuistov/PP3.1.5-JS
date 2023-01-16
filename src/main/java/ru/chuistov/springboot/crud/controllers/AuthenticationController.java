@@ -37,10 +37,10 @@ public class AuthenticationController {
 
         // Creating a user with default role "user" and sending it
         // to the page just in case one wants to create new user
-        User user = new User();
-        user.getRoles().add(allRoles.get(1));
-        
-        model.addAttribute("user", user);
+        User newUser = new User();
+        newUser.getRoles().add(allRoles.get(1));
+
+        model.addAttribute("user", newUser);
         model.addAttribute("roles", allRoles);
         return "authentication/register";
     }
