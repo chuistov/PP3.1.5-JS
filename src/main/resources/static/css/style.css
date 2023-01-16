@@ -102,6 +102,7 @@ header .align-right {
     border: none;
     border-radius: 3px;
     color: white;
+    padding: 5px 15px;
 }
 .btn-edit-user {
     background-color: #09a292;
@@ -110,13 +111,12 @@ header .align-right {
     background-color: #c92137;
 }
 
+/* Table stylesheet */
 .my-table {
     padding: 5px 5px;
     background-color: white;
     caption-side: top;
-    border-style: solid;
-    border-color: white;
-    border-width: 20px;
+    border: 20px solid white;
     border-radius: 5px;
 }
 caption {
@@ -124,19 +124,18 @@ caption {
     padding-left: 20px;
     font-weight: 700;
 }
-th, td {
-    min-width: 150px;
+.my-table th, td {
+    min-width: 100px;
     padding: 5px 20px;
+}
+.my-table tr:hover {
+    font-weight: 500;
+}
+.my-table td {
+    border-bottom: 2px solid #dcdcda;
+    /*border-bottom: #dcdcda;*/
+    /*border-bottom-width: thin;*/
 }
 .my-table .odd {
     background-color: #dcdcda;
 }
-/*th {*/
-/*    height:28px;*/
-/*    background-color: cadetblue;*/
-/*    color:white;*/
-/*    border-color:black;*/
-/*}*/
-/*.ts1 {
-    background-color:#ffeffb;
-}*/
