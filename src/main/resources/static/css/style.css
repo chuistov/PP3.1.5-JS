@@ -136,3 +136,7 @@ caption {
 .my-table .odd {
     background-color: #dcdcda;
 }
+
+/* Matching tabs at admin page */
+#tab1:checked ~ #user-table,
+#tab2:checked ~ #add-user {display: block}
