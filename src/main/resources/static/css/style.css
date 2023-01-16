@@ -51,7 +51,11 @@ header {
     padding: 10px 30px;
     font-size: 1.5em;
 }
+header .align-right {
+    text-align: right;
+}
 .logout-button {
+    text-align: right;
     background-color: #1b1b19;
     border: #1b1b19;
     color: #b9bfb3;
@@ -87,6 +91,8 @@ header {
 }
 .container .col-10 {
     background-color: #ebebe9;
+    min-height: 800px;
+    padding-bottom: 20px;
 }
 .container h1 {
     padding: 10px;
@@ -105,10 +111,13 @@ header {
 }
 
 .my-table {
-    border: none;
     padding: 5px 5px;
     background-color: white;
     caption-side: top;
+    border-style: solid;
+    border-color: white;
+    border-width: 20px;
+    border-radius: 5px;
 }
 caption {
     background-color: #dcdcda;

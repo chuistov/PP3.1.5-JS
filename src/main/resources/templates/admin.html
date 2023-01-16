@@ -19,9 +19,11 @@
                 <span th:text="${authorizedUser.getRoles()}">roles list</span>
             </div>
             <div class="col-2">
-                <form th:method="POST" th:action="@{/logout}">
-                    <input class="logout-button" type="submit" value="Logout">
-                </form>
+                <div class="align-right">
+                    <form th:method="POST" th:action="@{/logout}">
+                        <input class="logout-button" type="submit" value="Logout">
+                    </form>
+                </div>
             </div>
         </div>
     </header>
@@ -45,8 +47,8 @@
 
                 <table class="my-table">
                     <caption>All users</caption>
+                    <hr>
                     <tr>
-                        <hr>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Age</th>
