@@ -90,7 +90,17 @@ header {
 }
 .container h1 {
     padding: 10px;
-
+}
+.btn-delete-user, .btn-edit-user {
+    border: none;
+    border-radius: 3px;
+    color: white;
+}
+.btn-edit-user {
+    background-color: #09a292;
+}
+.btn-delete-user {
+    background-color: #c92137;
 }
 
 
