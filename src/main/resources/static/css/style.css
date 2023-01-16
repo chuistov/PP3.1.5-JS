@@ -168,3 +168,25 @@ caption {
     border-bottom: 1px solid #FFFFFF;
     background: #FFFFFF;
 }
+
+/* Stylesheet for user adding form */
+.add-user {
+    width: 500px;
+    padding-left: 300px;
+    background: #ebebe9;
+}
+.add-user h4 {
+    font-size: 0.8em;
+}
+.add-user ul {
+    list-style-type: none;
+}
+.add-user h6 {
+    font-weight: bold;
+    padding-top: 10px;
+}
+.add-user .login-button {
+    background-color: #2ea037;
+    border-color: #2ea037;
+    border-radius: 4px;
+}

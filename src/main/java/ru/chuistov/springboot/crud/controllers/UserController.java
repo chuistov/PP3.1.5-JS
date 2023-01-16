@@ -31,6 +31,8 @@ public class UserController {
     public String showAdminPage(Model model) {
         model.addAttribute("authorizedUser", getAuthorizedUser());
         model.addAttribute("users", userService.findAll());
+        model.addAttribute("user", new User());
+        model.addAttribute("roles", roleService.findAll());
         return "admin";
     }
 
