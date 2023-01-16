@@ -34,7 +34,13 @@ public class AuthenticationController {
 
     @GetMapping("/register")
     public String openRegistrationPage(Model model) {
-        model.addAttribute("user", new User());
+
+        // Creating a user with default role "user" and sending it
+        // to the page just in case one wants to create new user
+        User user = new User();
+        user.getRoles().add(allRoles.get(1));
+        
+        model.addAttribute("user", user);
         model.addAttribute("roles", allRoles);
         return "authentication/register";
     }

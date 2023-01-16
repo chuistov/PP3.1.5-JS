@@ -31,7 +31,13 @@ public class UserController {
     public String showAdminPage(Model model) {
         model.addAttribute("authorizedUser", getAuthorizedUser());
         model.addAttribute("users", userService.findAll());
-        model.addAttribute("user", new User());
+
+        // Creating a user with default role "user" and sending it
+        // to the page just in case one wants to create new user
+        User user = new User();
+        user.getRoles().add(roleService.findAll().get(1));
+
+        model.addAttribute("user", user);
         model.addAttribute("roles", roleService.findAll());
         return "admin";
     }
