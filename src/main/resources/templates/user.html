@@ -15,9 +15,9 @@
     <header>
         <div class="row">
             <div class="col-10">
-                <span th:text="${authorizedUser.getEmail()}" style="font-weight: bold">User</span>
+                <span th:text="${authorizedUser.email}" style="font-weight: bold">user@gmail.com</span>
                 with roles:
-                <span th:text="${#strings.arrayJoin(authorizedUser.getRoles(), ', ')}">ADMIN, USER</span>
+                <span th:text="${#strings.arrayJoin(authorizedUser.roles, ', ')}">ADMIN, USER</span>
             </div>
             <div class="col-2">
                 <div class="align-right">
@@ -57,11 +57,11 @@
                         <th>Roles</th>
                     </tr>
                     <tr class="odd">
-                        <td th:text="${authorizedUser.getName()}">First Name</td>
-                        <td th:text="${authorizedUser.getLastName()}">Last Name</td>
-                        <td th:text="${authorizedUser.getAge()}">Age</td>
-                        <td th:text="${authorizedUser.getEmail()}">Email</td>
-                        <td th:text="${#strings.arrayJoin(authorizedUser.getRoles(), ', ')}">ADMIN, USER</td>
+                        <td th:text="${authorizedUser.name}">First Name</td>
+                        <td th:text="${authorizedUser.lastName}">Last Name</td>
+                        <td th:text="${authorizedUser.age}">Age</td>
+                        <td th:text="${authorizedUser.email}">Email</td>
+                        <td th:text="${#strings.arrayJoin(authorizedUser.roles, ', ')}">ADMIN, USER</td>
                     </tr>
                 </table>
 
