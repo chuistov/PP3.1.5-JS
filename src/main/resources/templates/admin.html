@@ -86,40 +86,38 @@
 
                                     <!-- Button to open modal window for editing the user -->
                                     <td>
-                                        <button type="button" class="btn-edit-user"
-                                                data-bs-toggle="modal" data-bs-target="#editUserModal">
+                                        <button type="button"
+                                                class="btn-edit-user"
+                                                data-bs-toggle="modal"
+                                                th:data-bs-target="'#modalEditUserWithId' + ${user.id}">
                                             Edit
                                         </button>
                                     </td>
 
-                                    <!-- Button to open modal window for deleting the user -->
-                                    <td>
-                                        <button type="button"
-                                                class="btn-delete-user"
-                                                data-bs-toggle="modal"
-                                                th:data-bs-target="'#deleteUserWithId' + ${user.id}">
-                                            Delete
-                                        </button>
-                                    </td>
-
                                     <!-- Modal window for editing user -->
-                                    <div class="modal fade" id="editUserModal"
-                                         tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade"
+                                         th:id="'modalEditUserWithId' + ${user.id}"
+                                         tabindex="-1"
+                                         aria-labelledby="exampleModalLabel"
+                                         aria-hidden="true">
 
                                         <div class="modal-dialog">
                                             <div class="modal-content">
 
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="editUserModalLabel">Edit user</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
                                                 </div>
 
                                                 <div class="modal-body">
-                                                    ...
+                                                    <p th:text="${user.name}"></p>
                                                 </div>
 
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close
+                                                    </button>
                                                     <button type="button" class="btn btn-primary">Edit</button>
                                                 </div>
 
@@ -127,9 +125,19 @@
                                         </div>
                                     </div>
 
+                                    <!-- Button to open modal window for deleting the user -->
+                                    <td>
+                                        <button type="button"
+                                                class="btn-delete-user"
+                                                data-bs-toggle="modal"
+                                                th:data-bs-target="'#modalDeleteUserWithId' + ${user.id}">
+                                            Delete
+                                        </button>
+                                    </td>
+
                                     <!-- Modal window for deleting user -->
                                     <div class="modal fade"
-                                         th:id="'deleteUserWithId' + ${user.id}"
+                                         th:id="'modalDeleteUserWithId' + ${user.id}"
                                          tabindex="-1"
                                          aria-labelledby="exampleModalLabel"
                                          aria-hidden="true">
