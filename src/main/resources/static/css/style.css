@@ -198,3 +198,8 @@ caption {
 .modal-body ul {
     list-style-type: none;
 }
+
+.add-user .login-text-field {
+    border-radius: 5px;
+    background-color: #ffffff;
+}
