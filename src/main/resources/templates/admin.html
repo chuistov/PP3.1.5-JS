@@ -164,7 +164,6 @@
                                                     <form th:method="PATCH" th:action="@{/admin/{id}/edit(id=${user.id})}">
                                                         <input class="btn-edit-user" type="submit" value="Edit">
                                                     </form>
-                                                    <!--<button type="button" class="btn btn-primary">Edit</button>-->
                                                 </div>
 
                                             </div>
@@ -187,7 +186,7 @@
                                                 </div>
 
                                                 <div class="modal-body">
-                                                    <form class="form-floating" th:method="POST" th:action="@{/admin}">
+                                                    <form class="form-floating">
 
                                                         <h6>Id</h6>
                                                         <input class="login-text-field" th:value="${user.id}" type="text" disabled/>
