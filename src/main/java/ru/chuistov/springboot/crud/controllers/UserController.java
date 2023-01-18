@@ -36,8 +36,8 @@ public class UserController {
         // to the page just in case one wants to create new user
         User newUser = new User();
         newUser.getRoles().add(roleService.findAll().get(1));
-
         model.addAttribute("user", newUser);
+
         model.addAttribute("roles", roleService.findAll());
         return "admin";
     }
