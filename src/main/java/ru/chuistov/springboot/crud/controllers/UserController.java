@@ -36,7 +36,7 @@ public class UserController {
         // to the page just in case one wants to create new user
         User newUser = new User();
         newUser.getRoles().add(roleService.findAll().get(1));
-        model.addAttribute("user", newUser);
+        model.addAttribute("newUser", newUser);
 
         model.addAttribute("roles", roleService.findAll());
         return "admin";
@@ -54,22 +54,22 @@ public class UserController {
     }
 
     @PostMapping("/admin")
-    public String finishCreateUser(@ModelAttribute("user") User user) {
-        userService.save(user);
+    public String finishCreateUser(@ModelAttribute("newUser") User newUser) {
+        userService.save(newUser);
         return "redirect:/admin";
     }
 
-    @GetMapping("/admin/{id}/edit")
+   /* @GetMapping("/admin/{id}/edit")
     public String startUpdateUser(@PathVariable("id") long id, Model model) {
         User user = userService.findById(id);
         model.addAttribute("user", user);
         model.addAttribute("allRoles", roleService.findAll());
         return "admin/edit";
-    }
+    }*/
 
     @PatchMapping("/admin/{id}")
-    public String finishUpdateUser(@ModelAttribute("user") User user,
-                                   @PathVariable("id") long id) {
+    public String finishUpdateUser(@PathVariable("id") long id) {
+        User user = userService.findById(id);
         userService.update(user);
         return "redirect:/admin";
     }
