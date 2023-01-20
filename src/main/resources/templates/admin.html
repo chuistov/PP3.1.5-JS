@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-10">
                 <span th:text="${authorizedUser.email}" style="font-weight: bold">User</span>
-                with roles:
+                <span>with roles:</span>
                 <span th:text="${#strings.arrayJoin(authorizedUser.roles, ', ')}">ADMIN, USER</span>
             </div>
             <div class="col-2">
@@ -60,7 +60,7 @@
                         <table class="my-table">
                             <caption>All users</caption>
                             <tr>
-                                <th>Id</th>
+                                <!--<th>Id</th>-->
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Age</th>
@@ -71,18 +71,12 @@
                             </tr>
                             <th:block th:each="user : ${users}">
                                 <tr th:class="${userStat.odd} ? 'odd'">
-                                    <td th:text="${user.id}">10</td>
+                                    <!--<td th:text="${user.id}">10</td>-->
                                     <td th:text="${user.name}">Ivan</td>
                                     <td th:text="${user.lastName}">Ivanov</td>
                                     <td th:text="${user.age}">22</td>
                                     <td th:text="${user.email}">ivanov@gmail.com</td>
                                     <td th:text="${#strings.arrayJoin(user.roles, ', ')}">ADMIN, USER</td>
-
-                                    <!--<td>
-                                        <form th:method="GET" th:action="@{/admin/{id}/edit(id=${user.getId()})}">
-                                            <input class="btn-edit-user" type="submit" value="Edit">
-                                        </form>
-                                    </td>-->
 
                                     <!-- Button to open modal window for editing the user -->
                                     <td>
@@ -123,8 +117,7 @@
                                                 <div class="modal-body">
                                                     <form class="form-floating" th:method="PATCH" th:action="@{/admin/edit}">
 
-                                                        <h6>Id</h6>
-                                                        <input th:value="${user.id}" type="number" name="user-id" disabled/>
+                                                        <input th:value="${user.id}" type="number" name="user-id" hidden/>
 
                                                         <h6>First Name</h6>
                                                         <input th:value="${user.name}" name="user-name" type="text"/>
@@ -139,20 +132,17 @@
                                                         <input th:value="${user.email}" name="user-email" type="email"/>
 
                                                         <h6>Roles</h6>
-                                                        <ul>
-                                                            <li th:each="role : ${roles}">
-                                                                <input class="form-check-input"
-                                                                       type="checkbox"
-                                                                       th:field="${newUser.roles}"
-                                                                       th:value="${role.id}"
-                                                                       th:name="'user-role-' + ${role.toString()}">
-                                                                <label class="form-check-label"
-                                                                       th:for="${#ids.prev('roles')}"
-                                                                       th:text="${role.toString()}"/>
-                                                            </li>
-                                                        </ul>
+                                                        <select class="form-select form-select-sm">
+                                                            <option th:each="role : ${roles}"
+                                                                    th:value="${user.roles.contains(role)}"
+                                                                    th:text="${role.toString()}"
+                                                                    th:name="'role-' + ${role.toString().toLowerCase()}"
+                                                            ></option>
+                                                        </select>
 
                                                         <input th:value="${user.password}" name="user-password" type="text" hidden/>
+
+                                                        <input class="btn-edit-user" type="submit" value="Edit">
                                                     </form>
                                                 </div>
 
@@ -187,8 +177,8 @@
                                                 <div class="modal-body">
                                                     <form class="form-floating">
 
-                                                        <h6>Id</h6>
-                                                        <input th:value="${user.id}" type="text" disabled/>
+                                                        <!--<h6>Id</h6>
+                                                        <input th:value="${user.id}" type="text" disabled/>-->
 
                                                         <h6>First Name</h6>
                                                         <input th:value="${user.name}" type="text" disabled/>

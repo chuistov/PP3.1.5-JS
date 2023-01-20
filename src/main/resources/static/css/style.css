@@ -198,6 +198,10 @@ caption {
 .modal-body ul {
     list-style-type: none;
 }
+.modal-body .form-select {
+    width: 30%;
+    margin: 0 auto;
+}
 
 .add-user .login-text-field {
     border-radius: 5px;

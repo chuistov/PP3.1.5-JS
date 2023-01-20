@@ -72,23 +72,24 @@ public class UserController {
 
     @PatchMapping("/admin/edit")
     public String finishUpdateUser(
-            @RequestParam(value = "user-id") Long id,
-            @RequestParam(value = "user-name") String firstName,
-            @RequestParam(value = "user-last-name") String lastName,
-            @RequestParam(value = "user-age") Integer age,
-            @RequestParam(value = "user-email") String email,
-            @RequestParam(value = "user-password") String password,
-            @RequestParam(value = "user-role-ADMIN") boolean roleAdmin,
-            @RequestParam(value = "user-role-USER") boolean roleUser) {
+            @RequestParam(value = "user-id", required = false) Long id,
+            @RequestParam(value = "user-name", required = false) String firstName,
+            @RequestParam(value = "user-last-name", required = false) String lastName,
+            @RequestParam(value = "user-age", required = false) Integer age,
+            @RequestParam(value = "user-email", required = false) String email,
+            @RequestParam(value = "user-password", required = false) String password,
+            @RequestParam(value = "role-admin", required = false) boolean roleAdmin,
+            @RequestParam(value = "role-user", required = false) boolean roleUser) {
+
         List<Role> roles = new ArrayList<>();
+        roles.add(roleService.findRoleByRoleName("ROLE_USER"));
         if (roleAdmin) {
             roles.add(roleService.findRoleByRoleName("ROLE_ADMIN"));
         }
-        if (roleUser) {
-            roles.add(roleService.findRoleByRoleName("ROLE_USER"));
-        }
 
-        userService.update(new User((long)id, firstName, lastName, (int)age, email, password, roles));
+        userService.update(
+                new User((long)id, firstName, lastName,
+                        (int)age, email, password, roles));
         return "redirect:/admin";
     }
 
