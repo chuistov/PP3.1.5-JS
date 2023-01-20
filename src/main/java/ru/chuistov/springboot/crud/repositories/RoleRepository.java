@@ -6,4 +6,5 @@ import ru.chuistov.springboot.crud.entities.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {
+    Role findRoleByRoleName(String roleName);
 }

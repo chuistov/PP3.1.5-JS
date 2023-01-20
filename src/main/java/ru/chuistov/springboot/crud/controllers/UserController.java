@@ -7,12 +7,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.chuistov.springboot.crud.entities.Role;
 import ru.chuistov.springboot.crud.entities.User;
 import ru.chuistov.springboot.crud.security.UserDetailsImpl;
 import ru.chuistov.springboot.crud.services.RoleService;
 import ru.chuistov.springboot.crud.services.UserService;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -67,9 +70,25 @@ public class UserController {
         return "admin/edit";
     }*/
 
-    @PatchMapping("/admin")
-    public String finishUpdateUser(@ModelAttribute("user") User user) {
-        userService.update(user);
+    @PatchMapping("/admin/edit")
+    public String finishUpdateUser(
+            @RequestParam(value = "user-id") Long id,
+            @RequestParam(value = "user-name") String firstName,
+            @RequestParam(value = "user-last-name") String lastName,
+            @RequestParam(value = "user-age") Integer age,
+            @RequestParam(value = "user-email") String email,
+            @RequestParam(value = "user-password") String password,
+            @RequestParam(value = "user-role-ADMIN") boolean roleAdmin,
+            @RequestParam(value = "user-role-USER") boolean roleUser) {
+        List<Role> roles = new ArrayList<>();
+        if (roleAdmin) {
+            roles.add(roleService.findRoleByRoleName("ROLE_ADMIN"));
+        }
+        if (roleUser) {
+            roles.add(roleService.findRoleByRoleName("ROLE_USER"));
+        }
+
+        userService.update(new User((long)id, firstName, lastName, (int)age, email, password, roles));
         return "redirect:/admin";
     }
 
