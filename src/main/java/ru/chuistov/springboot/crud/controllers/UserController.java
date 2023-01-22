@@ -56,24 +56,11 @@ public class UserController {
         return "user";
     }
 
-   /* @GetMapping("/admin/new")
-    public String startCreateUser(@ModelAttribute("user") User user) {
-        return "admin/new";
-    }
-*/
     @PostMapping("/admin")
     public String finishCreateUser(@ModelAttribute("newUser") User newUser) {
         userService.save(newUser);
         return "redirect:/admin";
     }
-
-   /* @GetMapping("/admin/{id}/edit")
-    public String startUpdateUser(@PathVariable("id") long id, Model model) {
-        User user = userService.findById(id);
-        model.addAttribute("user", user);
-        model.addAttribute("allRoles", roleService.findAll());
-        return "admin/edit";
-    }*/
 
     @PatchMapping("/admin/edit")
     public String finishUpdateUser(HttpServletRequest request,
