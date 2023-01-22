@@ -13,6 +13,7 @@ import ru.chuistov.springboot.crud.security.UserDetailsImpl;
 import ru.chuistov.springboot.crud.services.RoleService;
 import ru.chuistov.springboot.crud.services.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,10 @@ public class UserController {
         newUser.getRoles().add(roleService.findAll().get(1));
         model.addAttribute("newUser", newUser);
 
+        // Creating a user for editing user inside the view
+        /*User updatedUser = new User();
+        model.addAttribute("updatedUser", updatedUser);*/
+
         model.addAttribute("roles", roleService.findAll());
         return "admin";
     }
@@ -51,11 +56,11 @@ public class UserController {
         return "user";
     }
 
-    @GetMapping("/admin/new")
+   /* @GetMapping("/admin/new")
     public String startCreateUser(@ModelAttribute("user") User user) {
         return "admin/new";
     }
-
+*/
     @PostMapping("/admin")
     public String finishCreateUser(@ModelAttribute("newUser") User newUser) {
         userService.save(newUser);
@@ -71,21 +76,23 @@ public class UserController {
     }*/
 
     @PatchMapping("/admin/edit")
-    public String finishUpdateUser(
-            @RequestParam(value = "user-id", required = false) Long id,
-            @RequestParam(value = "user-name", required = false) String firstName,
-            @RequestParam(value = "user-last-name", required = false) String lastName,
-            @RequestParam(value = "user-age", required = false) Integer age,
-            @RequestParam(value = "user-email", required = false) String email,
-            @RequestParam(value = "user-password", required = false) String password,
-            @RequestParam(value = "role-admin", required = false) boolean roleAdmin,
-            @RequestParam(value = "role-user", required = false) boolean roleUser) {
+    public String finishUpdateUser(HttpServletRequest request,
+                                   @RequestParam(value = "user-id", required = false) Long id,
+                                   @RequestParam(value = "user-name", required = false) String firstName,
+                                   @RequestParam(value = "user-last-name", required = false) String lastName,
+                                   @RequestParam(value = "user-age", required = false) Integer age,
+                                   @RequestParam(value = "user-email", required = false) String email,
+                                   @RequestParam(value = "user-password", required = false) String password/*,
+                                   @RequestParam(value = "role-admin", required = false) boolean roleAdmin,
+                                   @RequestParam(value = "role-user", required = false) boolean roleUser*/) {
+
+        System.out.println(request.getParameter("roles"));
 
         List<Role> roles = new ArrayList<>();
-        roles.add(roleService.findRoleByRoleName("ROLE_USER"));
-        if (roleAdmin) {
+        if (request.getParameter("roles").equals("ROLE_ADMIN")) {
             roles.add(roleService.findRoleByRoleName("ROLE_ADMIN"));
         }
+        roles.add(roleService.findRoleByRoleName("ROLE_USER"));
 
         userService.update(
                 new User((long)id, firstName, lastName,
