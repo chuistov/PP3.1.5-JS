@@ -2,6 +2,7 @@ package ru.chuistov.springboot.crud.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -51,9 +52,16 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public String showUserPage(Model model) {
-        model.addAttribute("authorizedUser", getAuthorizedUser());
-        return "user";
+    public String showUserPage() {
+        return "userRest";
+    }
+
+    private User getAuthorizedUser() {
+        return ((UserDetailsImpl) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal())
+                .getUser();
     }
 
     @PostMapping("/admin")
@@ -91,9 +99,5 @@ public class UserController {
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteById(id);
         return "redirect:/admin";
-    }
-
-    private User getAuthorizedUser() {
-        return ((UserDetailsImpl)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
     }
 }

@@ -38,8 +38,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/js/**",
                         "/error"
                         ).permitAll() // the only pages accessible by non-authenticated person
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user").hasRole("USER")
+
+                // security is disabled for testing purposes (next 4 lines)
+                .antMatchers("/admin/**").permitAll()//.hasRole("ADMIN")
+                .antMatchers("/user").permitAll()//.hasRole("USER")
+                .antMatchers("/api/**").permitAll()
+                .antMatchers("/**").permitAll()
+
                 .anyRequest().authenticated()   // all other pages only after authentication
             .and()
             .formLogin()                                // form for entering username and password

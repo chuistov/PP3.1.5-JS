@@ -12,12 +12,13 @@
     <title>User page</title>
 </head>
 <body>
+
     <header>
         <div class="row">
             <div class="col-10">
-                <span th:text="${authorizedUser.email}" style="font-weight: bold">user@gmail.com</span>
+                <span id="userEmail" style="font-weight: bold">user@gmail.com</span>
                 with roles:
-                <span th:text="${#strings.arrayJoin(authorizedUser.roles, ', ')}">ADMIN, USER</span>
+                <span id="userRoles">ADMIN, USER</span>
             </div>
             <div class="col-2">
                 <div class="align-right">
@@ -41,7 +42,6 @@
                     <div class="active-role">
                         <p>User</p>
                     </div>
-
                 </div>
             </div>
 
@@ -49,25 +49,23 @@
                 <h1>User information</h1>
                 <table class="my-table">
                     <caption>About user</caption>
-                    <tr>
-                        <th>Name</th>
-                        <th>Last Name</th>
-                        <th>Age</th>
-                        <th>Email</th>
-                        <th>Roles</th>
-                    </tr>
-                    <tr class="odd">
-                        <td th:text="${authorizedUser.name}">First Name</td>
-                        <td th:text="${authorizedUser.lastName}">Last Name</td>
-                        <td th:text="${authorizedUser.age}">Age</td>
-                        <td th:text="${authorizedUser.email}">Email</td>
-                        <td th:text="${#strings.arrayJoin(authorizedUser.roles, ', ')}">ADMIN, USER</td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Last Name</th>
+                            <th>Age</th>
+                            <th>Email</th>
+                            <th>Roles</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
                 </table>
             </div>
         </div>
     </div>
 
     <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/userJS.js"></script>
+
 </body>
 </html>

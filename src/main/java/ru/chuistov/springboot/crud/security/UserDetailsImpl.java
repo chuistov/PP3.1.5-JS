@@ -54,6 +54,6 @@ public class UserDetailsImpl implements UserDetails {
 
     // to get details of authenticated user
     public User getUser() {
-        return user;
+        return this.user;
     }
 }

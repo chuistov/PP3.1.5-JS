@@ -15,4 +15,6 @@ public class GreetingController {
     public String greetingPage() {
         return "/greeting";
     }
+
+
 }
