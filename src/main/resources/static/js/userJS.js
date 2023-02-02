@@ -14,7 +14,7 @@
     }
 
     function fillTableBody() {
-        document.querySelector('#tableBody').innerHTML =
+        document.getElementById("authUserTableBody").innerHTML =
             `<tr style="background-color: #dcdcda">
             <td>${user.name}</td>
             <td>${user.lastName}</td>

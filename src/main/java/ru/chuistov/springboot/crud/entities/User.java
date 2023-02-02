@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import ru.chuistov.springboot.crud.dto.UserDto;
 
 import javax.persistence.*;
 import java.util.*;
@@ -65,6 +66,16 @@ public class User {
         this.age = age;
         this.email = email;
         this.password = password;
+        this.roles = roles;
+    }
+
+    public User(UserDto userDto, List<Role> roles) {
+        this.id = userDto.getId();
+        this.name = userDto.getName();
+        this.lastName = userDto.getLastName();
+        this.age = userDto.getAge();
+        this.email = userDto.getEmail();
+        this.password = userDto.getPassword();
         this.roles = roles;
     }
 }

@@ -134,6 +134,9 @@ caption {
 .my-table .odd {
     background-color: #dcdcda;
 }
+.my-table > tbody > tr:nth-child(odd) {
+    background-color: #dcdcda;
+}
 
 /* Matching tabs at admin page */
 #tab1:checked ~ #user-table,

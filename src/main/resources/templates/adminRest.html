@@ -16,9 +16,9 @@
     <header>
         <div class="row">
             <div class="col-10">
-                <span th:text="${authorizedUser.email}" style="font-weight: bold">User</span>
+                <span id="userEmail" style="font-weight: bold">User</span>
                 <span>with roles:</span>
-                <span th:text="${#strings.arrayJoin(authorizedUser.roles, ', ')}">ADMIN, USER</span>
+                <span id="userRoles">ADMIN, USER</span>
             </div>
             <div class="col-2">
                 <div class="align-right">
@@ -60,26 +60,28 @@
                     <div id="user-table">
                         <table class="my-table">
                             <caption>All users</caption>
-                            <tr>
-                                <!--<th>Id</th>-->
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Age</th>
-                                <th>Email</th>
-                                <th>Roles</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                            <th:block th:each="user : ${users}">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Age</th>
+                                    <th>Email</th>
+                                    <th>Roles</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody id="allUsersTableBody"></tbody>
+                            <!--<th:block th:each="user : ${users}">
                                 <tr th:class="${userStat.odd} ? 'odd'">
-                                    <!--<td th:text="${user.id}">10</td>-->
+                                    &lt;!&ndash;<td th:text="${user.id}">10</td>&ndash;&gt;
                                     <td th:text="${user.name}">Ivan</td>
                                     <td th:text="${user.lastName}">Ivanov</td>
                                     <td th:text="${user.age}">22</td>
                                     <td th:text="${user.email}">ivanov@gmail.com</td>
                                     <td th:text="${#strings.arrayJoin(user.roles, ', ')}">ADMIN, USER</td>
 
-                                    <!-- Button to open modal window for editing the user -->
+                                    &lt;!&ndash; Button to open modal window for editing the user &ndash;&gt;
                                     <td>
                                         <button type="button"
                                                 class="btn-edit-user"
@@ -89,7 +91,7 @@
                                         </button>
                                     </td>
 
-                                    <!-- Button to open modal window for deleting the user -->
+                                    &lt;!&ndash; Button to open modal window for deleting the user &ndash;&gt;
                                     <td>
                                         <button type="button"
                                                 class="btn-delete-user"
@@ -99,7 +101,7 @@
                                         </button>
                                     </td>
 
-                                    <!-- Modal window for editing user -->
+                                    &lt;!&ndash; Modal window for editing user &ndash;&gt;
                                     <div class="modal fade"
                                          th:id="'modalEditUserWithId' + ${user.id}"
                                          tabindex="-1"
@@ -145,7 +147,7 @@
                                                                         th:value="${role.roleName}"
                                                                         th:selected="${user.roles.contains(role)}"
                                                                         th:text="${role.toString()}"
-                                                                > <!--th:name="'role-' + ${role.toString().toLowerCase()}"-->
+                                                                > &lt;!&ndash;th:name="'role-' + ${role.toString().toLowerCase()}"&ndash;&gt;
                                                                 </option>
                                                             </select>
                                                         </div>
@@ -167,7 +169,7 @@
                                         </form>
                                     </div>
 
-                                    <!-- Modal window for deleting user -->
+                                    &lt;!&ndash; Modal window for deleting user &ndash;&gt;
                                     <div class="modal fade"
                                          th:id="'modalDeleteUserWithId' + ${user.id}"
                                          tabindex="-1"
@@ -227,7 +229,7 @@
                                     </div>
 
                                 </tr>
-                            </th:block>
+                            </th:block>-->
                         </table>
                     </div>
 

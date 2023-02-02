@@ -31,6 +31,7 @@ public class UserDto {
 
     @Email
     private final String email;
+    private final String password;
     private final List<String> roles = new ArrayList<>();
     private final String rolesString;
 
@@ -40,6 +41,7 @@ public class UserDto {
         lastName = user.getLastName();
         age = user.getAge();
         email = user.getEmail();
+        password = user.getPassword();
         for (Role role : user.getRoles()) {
             this.roles.add(role.toString());
         }

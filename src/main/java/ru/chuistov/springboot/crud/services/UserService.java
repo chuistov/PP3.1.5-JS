@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.chuistov.springboot.crud.dto.UserDto;
 import ru.chuistov.springboot.crud.entities.User;
 import ru.chuistov.springboot.crud.repositories.UserRepository;
 
@@ -16,7 +17,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final User dummyUser = new User("no name", "no last name", 0, "email", "password");
+    private final User dummyUser = new User("dummy", "dummy", 0, "dummy", "dummy");
 
     @Autowired
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
@@ -26,7 +27,6 @@ public class UserService {
 
     @Transactional
     public User save(User user) {
-
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
@@ -55,4 +55,11 @@ public class UserService {
     }
 
 
+    public String getUserPassword(UserDto userDto) {
+        long id = userDto.getId();
+        return userRepository
+                .findById(id)
+                .orElse(dummyUser)
+                .getPassword();
+    }
 }

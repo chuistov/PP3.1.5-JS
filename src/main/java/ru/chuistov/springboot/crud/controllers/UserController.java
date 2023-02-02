@@ -48,20 +48,12 @@ public class UserController {
         model.addAttribute("updatedUser", updatedUser);*/
 
         model.addAttribute("roles", roleService.findAll());
-        return "admin";
+        return "adminRest";
     }
 
     @GetMapping("/user")
     public String showUserPage() {
         return "userRest";
-    }
-
-    private User getAuthorizedUser() {
-        return ((UserDetailsImpl) SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getPrincipal())
-                .getUser();
     }
 
     @PostMapping("/admin")
@@ -99,5 +91,13 @@ public class UserController {
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteById(id);
         return "redirect:/admin";
+    }
+
+    private User getAuthorizedUser() {
+        return ((UserDetailsImpl) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal())
+                .getUser();
     }
 }

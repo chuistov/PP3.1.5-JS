@@ -1,40 +1,36 @@
 package ru.chuistov.springboot.crud.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContext;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.chuistov.springboot.crud.dto.UserDto;
+import ru.chuistov.springboot.crud.entities.Role;
 import ru.chuistov.springboot.crud.entities.User;
 import ru.chuistov.springboot.crud.security.UserDetailsImpl;
+import ru.chuistov.springboot.crud.services.RoleService;
 import ru.chuistov.springboot.crud.services.UserService;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
 public class UserRestController {
 
     private final UserService userService;
+    private final RoleService roleService;
 
     @Autowired
-    public UserRestController(UserService userService) {
+    public UserRestController(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
     @GetMapping("/all")
     public List<UserDto> getAllUsers() {
-        List<User> users = userService.findAll();
-        List<UserDto> userDtoList = new ArrayList<>();
-        for (User user : users) {
-            userDtoList.add(new UserDto(user));
-        }
-        return userDtoList;
+        return userService.findAll().stream()
+                .map(UserDto::new)
+                .toList();
     }
 
     @GetMapping("/{id}")
@@ -44,17 +40,46 @@ public class UserRestController {
     }
 
     @GetMapping("/auth")
-    public UserDto getAuthUser() {
-        return new UserDto(getAuthorizedUser());
+    public UserDto getAuthorizedUser() {
+        User user = ((UserDetailsImpl) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal())
+                .getUser();
+        return new UserDto(user);
     }
 
-    private User getAuthorizedUser() {
+    @PatchMapping("/")
+    public ResponseEntity<HttpStatus> editUser(@PathVariable("id") long id, @RequestBody UserDto userDto) {
+        List<Role> roles = roleService.getRolesFromDto(userDto);
+//        String password = userService.getUserPassword(userDto);
+        User user = new User(userDto, roles);
+        userService.update(user);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    // TODO save new user
+    @PostMapping("/")
+    public ResponseEntity<HttpStatus> addUser(@RequestBody UserDto userDto) {
+        List<Role> roles = roleService.getRolesFromDto(userDto);
+        User user = new User(userDto, roles);
+        userService.save(user);
+        return ResponseEntity.ok(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/")
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") long id) {
+        userService.deleteById(id);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+/*    private User getAuthorizedUser() {
         var context = SecurityContextHolder.getContext();
         var objectPrincipal = context
                 .getAuthentication()
                 .getPrincipal();
         var principal = (UserDetailsImpl) objectPrincipal;
         return principal.getUser();
-    }
+    }*/
 
 }
