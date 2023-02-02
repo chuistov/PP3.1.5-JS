@@ -31,30 +31,46 @@
                     <td>${user.email}</td>
                     <td>${user.rolesString}</td>
                     <td>
-                        <button class="btn-edit-user"
-                                data-bs-toggle="modal"
-                                data-bs-target="'#modalEditUserWithId' + ${user.id}">Edit
-                        </button>
+                        <button class="btn-edit-user" data-bs-toggle="modal" data-bs-target="#modalEditUser">Edit</button>
                     </td>
                     <td>
-                        <button class="btn-delete-user"
-                                data-bs-toggle="modal"
-                                data-bs-target="'#modalDeleteUserWithId' + ${user.id}">Delete
-                        </button>   
+                        <button class="btn-delete-user" data-bs-toggle="modal" data-bs-target="#modalDeleteUser">Delete</button>   
                     </td>
                 </tr>`
-            document.querySelector('#allUsersTableBody').innerHTML += tableRow;
+            document.getElementById("allUsersTableBody").innerHTML += tableRow;
         });
-
-
-        /*document.querySelector('#tableBody').innerHTML =
-            `<tr style="background-color: #dcdcda">
-            <td>${user.name}</td>
-            <td>${user.lastName}</td>
-            <td>${user.age}</td>
-            <td>${user.email}</td>
-            <td>${user.rolesString}</td>
-        </tr>`;*/
+        document.querySelectorAll('.btn-edit-user').forEach(btn => {
+            onEditButton(btn);
+        });
+        document.querySelectorAll('.btn-delete-user').forEach(btn => {
+            onDeleteButton(btn);
+        });
     }
+
+    function onEditButton(button) {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tableRow = button.parentNode.parentNode;
+            document.querySelector('#editName').value = tableRow.children[0].innerHTML;
+            document.querySelector('#editLastName').value = tableRow.children[1].innerHTML;
+            document.querySelector('#editAge').value = tableRow.children[2].innerHTML;
+            document.querySelector('#editEmail').value = tableRow.children[3].innerHTML;
+            document.querySelector('#editForm').ariaModal = 'show';
+        });
+    }
+
+    function onDeleteButton(button) {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tableRow = button.parentNode.parentNode;
+            document.querySelector('#deleteName').value = tableRow.children[0].innerHTML;
+            document.querySelector('#deleteLastName').value = tableRow.children[1].innerHTML;
+            document.querySelector('#deleteAge').value = tableRow.children[2].innerHTML;
+            document.querySelector('#deleteEmail').value = tableRow.children[3].innerHTML;
+            document.querySelector('#deleteRoles').value = tableRow.children[4].innerHTML;
+            document.querySelector('#deleteForm').ariaModal = 'show';
+        })
+    }
+
 })();
 
