@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.chuistov.springboot.crud.dto.RoleDto;
 import ru.chuistov.springboot.crud.services.RoleService;
-
 import java.util.List;
 
 @RestController
@@ -20,9 +19,9 @@ public class RoleRestController {
         this.roleService = roleService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<RoleDto> getAllRoles() {
-        System.out.println("getting roles");
+        System.out.println();
         return roleService.findAll().stream()
                 .map(RoleDto::new)
                 .toList();

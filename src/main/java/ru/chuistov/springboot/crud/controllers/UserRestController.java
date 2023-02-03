@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import ru.chuistov.springboot.crud.dto.RoleDto;
 import ru.chuistov.springboot.crud.dto.UserDto;
 import ru.chuistov.springboot.crud.entities.Role;
 import ru.chuistov.springboot.crud.entities.User;
@@ -73,6 +74,14 @@ public class UserRestController {
         userService.deleteById(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }
+
+   /* @GetMapping("/roles")
+    public List<RoleDto> getAllRoles() {
+        System.out.println();
+        return roleService.findAll().stream()
+                .map(RoleDto::new)
+                .toList();
+    }*/
 
 
 

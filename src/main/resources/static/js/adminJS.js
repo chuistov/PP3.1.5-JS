@@ -64,7 +64,7 @@
             document.querySelector('#editAge').value = tableRow.children[3].innerHTML;
             document.querySelector('#editEmail').value = tableRow.children[4].innerHTML;
             document.querySelector('#editRoles').value = tableRow.children[5].innerHTML;
-            document.querySelector('#editForm').ariaModal = 'show';
+            /*document.querySelector('#editForm').ariaModal = 'show';*/
         });
     }
 

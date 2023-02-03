@@ -133,46 +133,47 @@
                     </div>
 
                     <div class="modal-body">
+                        <form id="editForm" class="form-floating">
+                            <div class="form-group" hidden>
+                                <input id="editId" type="number"/>
+                            </div>
 
-                        <div class="form-group" hidden>
-                            <input id="editId" type="number"/>
-                        </div>
+                            <div class="form-group">
+                                <h6>First Name</h6>
+                                <input id="editName" name="user-name" type="text"/>
+                            </div>
 
-                        <div class="form-group">
-                            <h6>First Name</h6>
-                            <input id="editName" name="user-name" type="text"/>
-                        </div>
+                            <div class="form-group">
+                                <h6>Last Name</h6>
+                                <input id="editLastName" name="user-last-name" type="text"/>
+                            </div>
 
-                        <div class="form-group">
-                            <h6>Last Name</h6>
-                            <input id="editLastName" name="user-last-name" type="text"/>
-                        </div>
+                            <div class="form-group">
+                                <h6>Age</h6>
+                                <input id="editAge" name="user-age" type="number"/>
+                            </div>
 
-                        <div class="form-group">
-                            <h6>Age</h6>
-                            <input id="editAge" name="user-age" type="number"/>
-                        </div>
+                            <div class="form-group">
+                                <h6>Email</h6>
+                                <input id="editEmail" name="user-email" type="email"/>
+                            </div>
 
-                        <div class="form-group">
-                            <h6>Email</h6>
-                            <input id="editEmail" name="user-email" type="email"/>
-                        </div>
+                            <div class="form-group">
+                                <h6>Roles</h6>
+                                <select id="editRoles" class="form-select form-select-sm" multiple size="2"></select>
+                                <!--<select class="form-select form-select-sm" multiple size="2" th:name="roles">
+                                    <option th:each="role : ${roles}"
+                                            th:value="${role.roleName}"
+                                            th:selected="${user.roles.contains(role)}"
+                                            th:text="${role.toString()}"
+                                    </option>
+                                </select>-->
+                            </div>
 
-                        <div class="form-group">
-                            <h6>Roles</h6>
-                            <select id="editRoles" class="form-select form-select-sm" multiple size="2"></select>
-                            <!--<select class="form-select form-select-sm" multiple size="2" th:name="roles">
-                                <option th:each="role : ${roles}"
-                                        th:value="${role.roleName}"
-                                        th:selected="${user.roles.contains(role)}"
-                                        th:text="${role.toString()}"
-                                </option>
-                            </select>-->
-                        </div>
-
-                        <!--<div class="form-group">
-                            <input th:value="${user.password}" name="user-password" type="text" hidden/>
-                        </div>-->
+                            <!--<div class="form-group">
+                                <input th:value="${user.password}" name="user-password" type="text" hidden/>
+                            </div>-->
+                        </form>
                     </div>
 
                     <div class="modal-footer">
@@ -199,7 +200,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-floating">
+                    <form id="deleteForm" class="form-floating">
 
                         <!--<div class="mb-3">
                             <label for="deleteId" class="form-label fw-bold">ID</label>
