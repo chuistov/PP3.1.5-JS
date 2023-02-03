@@ -49,7 +49,7 @@ public class UserRestController {
         return new UserDto(user);
     }
 
-    @PatchMapping("/")
+    @PatchMapping("/{id}")
     public ResponseEntity<HttpStatus> editUser(@PathVariable("id") long id, @RequestBody UserDto userDto) {
         List<Role> roles = roleService.getRolesFromDto(userDto);
 //        String password = userService.getUserPassword(userDto);
@@ -58,20 +58,23 @@ public class UserRestController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    // TODO save new user
     @PostMapping("/")
     public ResponseEntity<HttpStatus> addUser(@RequestBody UserDto userDto) {
         List<Role> roles = roleService.getRolesFromDto(userDto);
         User user = new User(userDto, roles);
         userService.save(user);
+
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") long id) {
+        System.out.println(id);
         userService.deleteById(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }
+
+
 
 /*    private User getAuthorizedUser() {
         var context = SecurityContextHolder.getContext();
