@@ -1,4 +1,5 @@
 (async () => {
+
     const user = await getAuthorizedUser();
     fillHeader();
     const allRoles = await getRoles();
@@ -78,17 +79,53 @@
             document.querySelector('#deleteAge').value = tableRow.children[3].innerHTML;
             document.querySelector('#deleteEmail').value = tableRow.children[4].innerHTML;
             document.querySelector('#deleteRoles').value = tableRow.children[5].innerHTML;
-            document.querySelector('#deleteForm').ariaModal = 'show';
+            /*document.querySelector('#deleteForm').ariaModal = 'show';*/
         })
+    }
+
+    async function editModal() {
+        let roles = await fetch("http://localhost:8080/auth_controller/roles");
+        roles = await roles.json();
+        roles.forEach(role => {
+            if (document.querySelector('#editRoles').children.length < 2) {
+                let option = document.createElement("option");
+                option.value = role.id;
+                option.text = role.name.substring(5, role.name.length);
+                document.querySelector('#editRoles').appendChild(option);
+            }
+        });
+
+        document.querySelector('#editBtnSubmit').addEventListener('click', async (e) => {
+            e.preventDefault();
+            const idToBeEdited = `${document.querySelector('#editId').value}`;
+            const urlToEdit = `http://localhost:8080/api/user/edit/${idToBeEdited}`;
+            await fetch(urlToEdit, {
+                method: "PATCH",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id:
+                    name: document.querySelector('#editFirstName').value,
+                    lastName: document.querySelector('#editSecondName').value,
+                    age: document.querySelector("#editAge").value,
+                    email: document.querySelector('#editUsername').value,
+                    password: document.querySelector('#editPassword').value,
+                    roles: listOfRoles(document.querySelector('#editRoles'))
+                })
+            });
+            allUsers = await getAllUsers();
+            fillTableBody();
+            document.querySelector('#editForm').reset();
+        });
     }
 
     function deleteModal() {
         document.querySelector('#deleteBtnSubmit').addEventListener('click', async (e) => {
             e.preventDefault();
             const idToBeDeleted = `${document.querySelector('#deleteId').value}`;
-            alert( 'ID of user to be deleted: ' + idToBeDeleted );
-            let url = `http://localhost:8080/api/user/${idToBeDeleted}`;
-            await fetch(url, {
+            const urlToDelete = `http://localhost:8080/api/user/delete/${idToBeDeleted}`;
+            await fetch(urlToDelete, {
                 method: "DELETE"
             });
             allUsers = await getAllUsers();
@@ -96,6 +133,4 @@
             document.querySelector('#deleteForm').reset();
         });
     }
-
 })();
-

@@ -50,7 +50,7 @@ public class UserRestController {
         return new UserDto(user);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/edit/{id}")
     public ResponseEntity<HttpStatus> editUser(@PathVariable("id") long id, @RequestBody UserDto userDto) {
         List<Role> roles = roleService.getRolesFromDto(userDto);
 //        String password = userService.getUserPassword(userDto);
@@ -68,30 +68,10 @@ public class UserRestController {
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") long id) {
         System.out.println("deleting user with id " + id);
         userService.deleteById(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }
-
-   /* @GetMapping("/roles")
-    public List<RoleDto> getAllRoles() {
-        System.out.println();
-        return roleService.findAll().stream()
-                .map(RoleDto::new)
-                .toList();
-    }*/
-
-
-
-/*    private User getAuthorizedUser() {
-        var context = SecurityContextHolder.getContext();
-        var objectPrincipal = context
-                .getAuthentication()
-                .getPrincipal();
-        var principal = (UserDetailsImpl) objectPrincipal;
-        return principal.getUser();
-    }*/
-
 }

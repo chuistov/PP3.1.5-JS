@@ -202,11 +202,6 @@
                 <div class="modal-body">
                     <form id="deleteForm" class="form-floating">
 
-                        <!--<div class="mb-3">
-                            <label for="deleteId" class="form-label fw-bold">ID</label>
-                            <input type="number" id="deleteId" class="form-control" disabled>
-                        </div>-->
-
                         <div class="form-group" hidden>
                             <input id="deleteId" type="number"/>
                         </div>
@@ -243,9 +238,6 @@
 
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
-                    <!--<form th:method="DELETE" th:action="@{/admin/{id}(id=${user.id})}">
-                        <input class="btn btn-primary" type="submit" value="Delete">
-                    </form>-->
                     <button type="submit"
                             form="deleteForm"
                             id="deleteBtnSubmit"
@@ -253,9 +245,7 @@
                             data-bs-dismiss="modal">
                         Delete
                     </button>
-
                 </div>
-
             </div>
         </div>
     </div>
