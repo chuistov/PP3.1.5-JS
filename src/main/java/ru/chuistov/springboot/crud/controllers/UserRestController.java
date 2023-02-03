@@ -69,7 +69,7 @@ public class UserRestController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") long id) {
-        System.out.println(id);
+        System.out.println("deleting user with id " + id);
         userService.deleteById(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }

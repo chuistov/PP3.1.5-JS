@@ -85,8 +85,9 @@
     function deleteModal() {
         document.querySelector('#deleteBtnSubmit').addEventListener('click', async (e) => {
             e.preventDefault();
-            alert( `${document.querySelector('#deleteId').value}` );
-            let url = `http://localhost:8080/api/user/${document.querySelector('#deleteId').value}`;
+            const idToBeDeleted = `${document.querySelector('#deleteId').value}`;
+            alert( 'ID of user to be deleted: ' + idToBeDeleted );
+            let url = `http://localhost:8080/api/user/${idToBeDeleted}`;
             await fetch(url, {
                 method: "DELETE"
             });

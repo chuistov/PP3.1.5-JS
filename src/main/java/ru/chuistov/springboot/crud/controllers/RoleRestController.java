@@ -22,6 +22,7 @@ public class RoleRestController {
 
     @GetMapping("/")
     public List<RoleDto> getAllRoles() {
+        System.out.println("getting roles");
         return roleService.findAll().stream()
                 .map(RoleDto::new)
                 .toList();
