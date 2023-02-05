@@ -23,6 +23,7 @@ public class UserService {
     private final RoleService roleService;
     private final PasswordEncoder passwordEncoder;
     private final List<Role> allRoles;
+    // TODO Get rid of dummy user, use exception instead
     private final User dummyUser = new User("dummy", "dummy", 0, "dummy", "dummy");
 
     @Autowired

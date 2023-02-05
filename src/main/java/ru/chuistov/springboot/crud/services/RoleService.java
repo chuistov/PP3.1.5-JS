@@ -1,13 +1,11 @@
 package ru.chuistov.springboot.crud.services;
 
 import org.springframework.stereotype.Service;
-import ru.chuistov.springboot.crud.dto.UserDto;
+import ru.chuistov.springboot.crud.dto.RoleDto;
 import ru.chuistov.springboot.crud.entities.Role;
-import ru.chuistov.springboot.crud.entities.User;
 import ru.chuistov.springboot.crud.repositories.RoleRepository;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class RoleService {
@@ -26,4 +24,9 @@ public class RoleService {
         return roleRepository.findRoleByRoleName(roleName);
     }
 
+    public List<RoleDto> findAllRoleDtos() {
+        return findAll().stream()
+                .map(RoleDto::new)
+                .toList();
+    }
 }
