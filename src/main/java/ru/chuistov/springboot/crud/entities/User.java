@@ -1,10 +1,7 @@
 package ru.chuistov.springboot.crud.entities;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import ru.chuistov.springboot.crud.dto.UserDto;
 
 import javax.persistence.*;
@@ -29,7 +26,7 @@ public class User {
     @Column(nullable = false)
     private int age;
 
-    // Used as a unique username
+    // unique username
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -44,6 +41,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private List<Role> roles = new ArrayList<>();
+
+
 
     public User(String name, String lastName, int age) {
         this.name = name;
@@ -69,13 +68,17 @@ public class User {
         this.roles = roles;
     }
 
-    public User(UserDto userDto, List<Role> roles) {
+    public User(UserDto userDto, List<Role> allRoles) {
         this.id = userDto.getId();
         this.name = userDto.getName();
         this.lastName = userDto.getLastName();
         this.age = userDto.getAge();
         this.email = userDto.getEmail();
         this.password = userDto.getPassword();
-        this.roles = roles;
+        allRoles.forEach(role -> {
+            if(userDto.getRolesString().contains(role.toString())) {
+                this.roles.add(role);
+            }
+        });
     }
 }

@@ -14,7 +14,7 @@
     <div class="login">
         <h4>Log in</h4>
         <form name="f" method="post" action="/process_login">
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
 
             <input class="login-text-field" type="text" name="username" placeholder="username"/>
             <input class="login-text-field" type="password" name="password" placeholder="password"/>

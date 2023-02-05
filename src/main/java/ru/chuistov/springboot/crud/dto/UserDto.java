@@ -32,8 +32,20 @@ public class UserDto {
     @Email
     private final String email;
     private final String password;
-    private final List<String> roles = new ArrayList<>();
+
+    // Here roles are Strings, not Roles
+//    private final List<String> roles = new ArrayList<>();
     private final String rolesString;
+
+    public UserDto(long id, String name, String lastName, int age, String email, String password, String rolesString) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+        this.password = password;
+        this.rolesString = rolesString;
+    }
 
     public UserDto(User user) {
         id = user.getId();
@@ -42,9 +54,6 @@ public class UserDto {
         age = user.getAge();
         email = user.getEmail();
         password = user.getPassword();
-        for (Role role : user.getRoles()) {
-            this.roles.add(role.toString());
-        }
         rolesString = user.getRoles().stream()
                 .map(role -> role.toString())
                 .collect(Collectors.joining(", "));

@@ -26,9 +26,4 @@ public class RoleService {
         return roleRepository.findRoleByRoleName(roleName);
     }
 
-    public List<Role> getRolesFromDto(UserDto userDto) {
-        return userDto.getRoles().stream()
-                .map(this::findRoleByRoleName)
-                .toList();
-    }
 }

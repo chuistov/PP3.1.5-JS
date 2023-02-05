@@ -5,6 +5,7 @@
     const allRoles = await getRoles();
     let allUsers = await getAllUsers();
     fillTableBody();
+    await editModal();
     deleteModal();
 
     async function getAuthorizedUser() {
@@ -64,8 +65,18 @@
             document.querySelector('#editLastName').value = tableRow.children[2].innerHTML;
             document.querySelector('#editAge').value = tableRow.children[3].innerHTML;
             document.querySelector('#editEmail').value = tableRow.children[4].innerHTML;
-            document.querySelector('#editRoles').value = tableRow.children[5].innerHTML;
-            /*document.querySelector('#editForm').ariaModal = 'show';*/
+            document.querySelector('#editRoles').innerHTML = '';
+            allRoles.forEach(role => {
+                if(tableRow.children[5].innerHTML.includes(role.roleName)) {
+                    document.querySelector('#editRoles').innerHTML += `
+                        <option value="${role.id}" selected>${role.roleName}</option>
+                    `;
+                } else {
+                    document.querySelector('#editRoles').innerHTML += `
+                        <option value="${role.id}">${role.roleName}</option>
+                    `;
+                }
+            });
         });
     }
 
@@ -84,35 +95,25 @@
     }
 
     async function editModal() {
-        let roles = await fetch("http://localhost:8080/auth_controller/roles");
-        roles = await roles.json();
-        roles.forEach(role => {
-            if (document.querySelector('#editRoles').children.length < 2) {
-                let option = document.createElement("option");
-                option.value = role.id;
-                option.text = role.name.substring(5, role.name.length);
-                document.querySelector('#editRoles').appendChild(option);
-            }
-        });
-
         document.querySelector('#editBtnSubmit').addEventListener('click', async (e) => {
             e.preventDefault();
-            const idToBeEdited = `${document.querySelector('#editId').value}`;
+            const idToBeEdited = document.querySelector('#editId').value;
             const urlToEdit = `http://localhost:8080/api/user/edit/${idToBeEdited}`;
+            const patchBody = JSON.stringify({
+                id: document.querySelector('#editId').value,
+                name: document.querySelector('#editName').value,
+                lastName: document.querySelector('#editLastName').value,
+                age: document.querySelector("#editAge").value,
+                email: document.querySelector('#editEmail').value,
+                password: document.querySelector('#editPassword').value,
+                rolesString: convertRolesToString(document.querySelector('#editRoles'))
+            });
             await fetch(urlToEdit, {
                 method: "PATCH",
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    id:
-                    name: document.querySelector('#editFirstName').value,
-                    lastName: document.querySelector('#editSecondName').value,
-                    age: document.querySelector("#editAge").value,
-                    email: document.querySelector('#editUsername').value,
-                    password: document.querySelector('#editPassword').value,
-                    roles: listOfRoles(document.querySelector('#editRoles'))
-                })
+                body: patchBody
             });
             allUsers = await getAllUsers();
             fillTableBody();
@@ -120,10 +121,21 @@
         });
     }
 
+    function convertRolesToString(options) {
+        let rolesString = '';
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].selected) {
+                rolesString += options[i].text + ", ";
+            }
+        }
+        rolesString = rolesString.substring(0, rolesString.length - 2);
+        return rolesString;
+    }
+
     function deleteModal() {
         document.querySelector('#deleteBtnSubmit').addEventListener('click', async (e) => {
             e.preventDefault();
-            const idToBeDeleted = `${document.querySelector('#deleteId').value}`;
+            const idToBeDeleted = document.querySelector('#deleteId').value;
             const urlToDelete = `http://localhost:8080/api/user/delete/${idToBeDeleted}`;
             await fetch(urlToDelete, {
                 method: "DELETE"

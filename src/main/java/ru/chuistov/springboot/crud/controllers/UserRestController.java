@@ -3,14 +3,9 @@ package ru.chuistov.springboot.crud.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import ru.chuistov.springboot.crud.dto.RoleDto;
 import ru.chuistov.springboot.crud.dto.UserDto;
-import ru.chuistov.springboot.crud.entities.Role;
 import ru.chuistov.springboot.crud.entities.User;
-import ru.chuistov.springboot.crud.security.UserDetailsImpl;
-import ru.chuistov.springboot.crud.services.RoleService;
 import ru.chuistov.springboot.crud.services.UserService;
 import java.util.List;
 
@@ -19,12 +14,10 @@ import java.util.List;
 public class UserRestController {
 
     private final UserService userService;
-    private final RoleService roleService;
 
     @Autowired
-    public UserRestController(UserService userService, RoleService roleService) {
+    public UserRestController(UserService userService) {
         this.userService = userService;
-        this.roleService = roleService;
     }
 
     @GetMapping("/all")
@@ -42,29 +35,18 @@ public class UserRestController {
 
     @GetMapping("/auth")
     public UserDto getAuthorizedUser() {
-        User user = ((UserDetailsImpl) SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getPrincipal())
-                .getUser();
-        return new UserDto(user);
+        return userService.getAuthorizedUser();
     }
 
     @PatchMapping("/edit/{id}")
     public ResponseEntity<HttpStatus> editUser(@PathVariable("id") long id, @RequestBody UserDto userDto) {
-        List<Role> roles = roleService.getRolesFromDto(userDto);
-//        String password = userService.getUserPassword(userDto);
-        User user = new User(userDto, roles);
-        userService.update(user);
+        userService.update(userDto);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @PostMapping("/")
     public ResponseEntity<HttpStatus> addUser(@RequestBody UserDto userDto) {
-        List<Role> roles = roleService.getRolesFromDto(userDto);
-        User user = new User(userDto, roles);
-        userService.save(user);
-
+        userService.save(userDto);
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
