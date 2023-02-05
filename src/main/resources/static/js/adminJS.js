@@ -6,7 +6,8 @@
     let allUsers = await getAllUsers();
     fillTableBody();
     await editModal();
-    deleteModal();
+    await deleteModal();
+    await addForm();
 
     async function getAuthorizedUser() {
         const result = await fetch('http://localhost:8080/api/user/auth');
@@ -121,17 +122,6 @@
         });
     }
 
-    function convertRolesToString(options) {
-        let rolesString = '';
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].selected) {
-                rolesString += options[i].text + ", ";
-            }
-        }
-        rolesString = rolesString.substring(0, rolesString.length - 2);
-        return rolesString;
-    }
-
     function deleteModal() {
         document.querySelector('#deleteBtnSubmit').addEventListener('click', async (e) => {
             e.preventDefault();
@@ -145,4 +135,47 @@
             document.querySelector('#deleteForm').reset();
         });
     }
+
+    function addForm() {
+        document.querySelector('#addUserBtnSubmit').addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            allRoles.forEach(role => {
+                document.querySelector('#addRoles').innerHTML += `
+                    <option value="${role.id}" selected>${role.roleName}</option>
+                `;
+            });
+
+            await fetch('http://localhost:8080/api/user', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: 1,
+                    name: document.querySelector('#addName').value,
+                    lastName: document.querySelector('#addLastName').value,
+                    age: document.querySelector("#addAge").value,
+                    email: document.querySelector('#addEmail').value,
+                    password: document.querySelector('#addPassword').value,
+                    rolesString: convertRolesToString(document.querySelector('#addRoles'))
+                })
+            });
+            allUsers = await getAllUsers();
+            fillTableBody();
+            document.querySelector('#editForm').reset();
+        });
+    }
+
+    function convertRolesToString(options) {
+        let rolesString = '';
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].selected) {
+                rolesString += options[i].text + ", ";
+            }
+        }
+        rolesString = rolesString.substring(0, rolesString.length - 2);
+        return rolesString;
+    }
+
 })();

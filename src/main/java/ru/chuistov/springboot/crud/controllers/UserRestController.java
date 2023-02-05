@@ -44,7 +44,7 @@ public class UserRestController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<HttpStatus> addUser(@RequestBody UserDto userDto) {
         userService.save(userDto);
         return ResponseEntity.ok(HttpStatus.CREATED);

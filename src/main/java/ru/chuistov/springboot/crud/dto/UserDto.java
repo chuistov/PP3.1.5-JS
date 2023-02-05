@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Data
 public class UserDto {
 
-    private final long id;
+    private long id;
 
     // TODO: move validation annotations to User class
     @NotEmpty(message = "First name should not be empty")
@@ -32,10 +32,16 @@ public class UserDto {
     @Email
     private final String email;
     private final String password;
-
-    // Here roles are Strings, not Roles
-//    private final List<String> roles = new ArrayList<>();
     private final String rolesString;
+
+   /* public UserDto(String name, String lastName, int age, String email, String password, String rolesString) {
+        this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+        this.password = password;
+        this.rolesString = rolesString;
+    }*/
 
     public UserDto(long id, String name, String lastName, int age, String email, String password, String rolesString) {
         this.id = id;
