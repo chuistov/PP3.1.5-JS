@@ -73,6 +73,12 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public List<UserDto> findAllDtos() {
+        return findAll().stream()
+                .map(UserDto::new)
+                .toList();
+    }
+
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }

@@ -22,9 +22,7 @@ public class UserRestController {
 
     @GetMapping("/all")
     public List<UserDto> getAllUsers() {
-        return userService.findAll().stream()
-                .map(UserDto::new)
-                .toList();
+        return userService.findAllDtos();
     }
 
     @GetMapping("/{id}")
@@ -39,7 +37,8 @@ public class UserRestController {
     }
 
     @PatchMapping("/edit/{id}")
-    public ResponseEntity<HttpStatus> editUser(@PathVariable("id") long id, @RequestBody UserDto userDto) {
+    public ResponseEntity<HttpStatus> editUser(@PathVariable("id") long id,
+                                               @RequestBody UserDto userDto) {
         userService.update(userDto);
         return ResponseEntity.ok(HttpStatus.OK);
     }
