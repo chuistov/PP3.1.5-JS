@@ -48,6 +48,6 @@ public class AuthenticationController {
     @PostMapping("/register")
     public String registerUser(@ModelAttribute("user") User user) {
         registrationService.register(user);
-        return "redirect:/login";
+        return "redirect:/register";
     }
 }

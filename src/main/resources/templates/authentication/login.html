@@ -14,6 +14,8 @@
     <div class="login">
         <h4>Log in</h4>
         <form name="f" method="post" action="/process_login">
+
+            <!-- csrf now disabled. This line is needed when csrf is not disabled. -->
             <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
 
             <input class="login-text-field" type="text" name="username" placeholder="username"/>
