@@ -139,8 +139,8 @@ caption {
 }
 
 /* Matching tabs at admin page */
-#tab1:checked ~ #user-table,
-#tab2:checked ~ #add-user {display: block}
+/*#tab1:checked ~ #user-table,*/
+/*#tab2:checked ~ #add-user {display: block}*/
 
 /* Tabs stylesheet*/
 .tabs {
@@ -173,22 +173,30 @@ caption {
 }
 
 /* Stylesheet for user adding form */
-.add-user {
-    width: 500px;
-    padding-left: 300px;
-    background: #ebebe9;
+#newUser {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    background: #f6f4f1;
 }
-.add-user h4 {
-    font-size: 0.8em;
+#newUser h4 {
+    text-align: left;
+    background-color: #dcdcda;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 1em;
+    color: #858380;
 }
-.add-user ul {
-    list-style-type: none;
-}
-.add-user h6 {
+#newUser h6 {
     font-weight: bold;
     padding-top: 10px;
 }
-.add-user .login-button {
+#newUser select{
+    width: 25%;
+    margin: 0 auto;
+}
+#newUser .login-button {
+    margin: 20px;
     background-color: #2ea037;
     border-color: #2ea037;
     border-radius: 4px;

@@ -99,22 +99,20 @@
         document.querySelector('#editBtnSubmit').addEventListener('click', async (e) => {
             e.preventDefault();
             const idToBeEdited = document.querySelector('#editId').value;
-            const urlToEdit = `http://localhost:8080/api/user/edit/${idToBeEdited}`;
-            const patchBody = JSON.stringify({
-                id: document.querySelector('#editId').value,
-                name: document.querySelector('#editName').value,
-                lastName: document.querySelector('#editLastName').value,
-                age: document.querySelector("#editAge").value,
-                email: document.querySelector('#editEmail').value,
-                password: document.querySelector('#editPassword').value,
-                rolesString: convertRolesToString(document.querySelector('#editRoles'))
-            });
-            await fetch(urlToEdit, {
+            await fetch(`http://localhost:8080/api/user/edit/${idToBeEdited}`, {
                 method: "PATCH",
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: patchBody
+                body: JSON.stringify({
+                    id: document.querySelector('#editId').value,
+                    name: document.querySelector('#editName').value,
+                    lastName: document.querySelector('#editLastName').value,
+                    age: document.querySelector("#editAge").value,
+                    email: document.querySelector('#editEmail').value,
+                    password: document.querySelector('#editPassword').value,
+                    rolesString: convertRolesToString(document.querySelector('#editRoles'))
+                })
             });
             allUsers = await getAllUsers();
             fillTableBody();
@@ -139,14 +137,7 @@
     function addForm() {
         document.querySelector('#addUserBtnSubmit').addEventListener('click', async (e) => {
             e.preventDefault();
-
-            allRoles.forEach(role => {
-                document.querySelector('#addRoles').innerHTML += `
-                    <option value="${role.id}" selected>${role.roleName}</option>
-                `;
-            });
-
-            await fetch('http://localhost:8080/api/user', {
+            let requestResult = await fetch('http://localhost:8080/api/user', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -161,9 +152,14 @@
                     rolesString: convertRolesToString(document.querySelector('#addRoles'))
                 })
             });
-            allUsers = await getAllUsers();
-            fillTableBody();
-            document.querySelector('#editForm').reset();
+            if(requestResult.ok) {
+                allUsers = await getAllUsers();
+                fillTableBody();
+                document.querySelector('#editForm').reset();
+                alert('New user successfully added');
+            } else {
+                alert('Error when adding user');
+            }
         });
     }
 
