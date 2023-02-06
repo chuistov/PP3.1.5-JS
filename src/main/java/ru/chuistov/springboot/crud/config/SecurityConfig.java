@@ -29,23 +29,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                .csrf().disable() // csrf is disabled to allow JS work properly (no csrf token are generated at front end)
             .authorizeRequests()
                 .antMatchers(
-                        "/",
-                        "/authentication/login",
-                        "/authentication/register",
-                        "/css/**",
-                        "/js/**",
-                        "/error"
-                        ).permitAll() // the only pages accessible by non-authenticated person
-
-                // security is disabled for testing purposes (next 4 lines)
-                .antMatchers("/admin/**").permitAll()//.hasRole("ADMIN")
-                .antMatchers("/user").permitAll()//.hasRole("USER")
-                .antMatchers("/api/**").permitAll()
-                .antMatchers("/**").permitAll()
-
+                        "/", "/authentication/login", "/authentication/register",
+                        "/css/**", "/js/**", "/error").permitAll() // the only pages accessible by non-authenticated person
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/user").hasRole("USER")
+                .antMatchers("/api/**").hasAnyRole("ADMIN", "USER")
                 .anyRequest().authenticated()   // all other pages only after authentication
             .and()
             .formLogin()                                // form for entering username and password
