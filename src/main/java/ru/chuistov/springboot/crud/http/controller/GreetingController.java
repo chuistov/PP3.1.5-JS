@@ -1,4 +1,4 @@
-package ru.chuistov.springboot.crud.controllers;
+package ru.chuistov.springboot.crud.http.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

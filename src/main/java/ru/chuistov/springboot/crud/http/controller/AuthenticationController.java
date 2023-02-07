@@ -1,4 +1,4 @@
-package ru.chuistov.springboot.crud.controllers;
+package ru.chuistov.springboot.crud.http.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
