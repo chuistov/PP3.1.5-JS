@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.chuistov.springboot.crud.security.LoginSuccessHandler;
-import ru.chuistov.springboot.crud.services.UserDetailsServiceImpl;
+import ru.chuistov.springboot.crud.security.UserDetailsServiceImpl;
 
 // security needs
 @EnableWebSecurity
