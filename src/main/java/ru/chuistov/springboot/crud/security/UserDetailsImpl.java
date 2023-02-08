@@ -2,11 +2,8 @@ package ru.chuistov.springboot.crud.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 import ru.chuistov.springboot.crud.entities.User;
-
 import java.util.Collection;
-import java.util.Collections;
 
 // security needs
 public class UserDetailsImpl implements UserDetails {

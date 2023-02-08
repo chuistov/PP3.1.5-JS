@@ -38,13 +38,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/admin/**").hasRole("ADMIN")
                     .antMatchers("/user").hasRole("USER")
                     .antMatchers("/api/**").hasAnyRole("ADMIN", "USER")
-                    .anyRequest().authenticated()   // all other pages only after authentication
+                    .anyRequest().authenticated()           // all other pages only after authentication
                 .and()
                 .formLogin()                                // form for entering username and password
-                    .loginPage(loginPage)     // form page URL
+                    .loginPage(loginPage)                   // form page URL
                     .loginProcessingUrl("/process_login")   // URL of page for processing username and password (for Spring Security)
-                    .successHandler(loginSuccessHandler) // choosing starting web page depending on user's role
-    //                .defaultSuccessUrl("/user", true) // URL to go in case of success
+                    .successHandler(loginSuccessHandler)    // choosing starting web page depending on user's role
+    //                .defaultSuccessUrl("/user", true)     // URL to go in case of success
                     .failureUrl("/authentication/login?error") // URL to go after entering wrong username or password
                 .and()
                 .logout()

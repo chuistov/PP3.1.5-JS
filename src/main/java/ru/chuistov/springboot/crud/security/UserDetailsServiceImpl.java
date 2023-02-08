@@ -7,11 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.chuistov.springboot.crud.entities.User;
 import ru.chuistov.springboot.crud.repositories.UserRepository;
-import ru.chuistov.springboot.crud.security.UserDetailsImpl;
-
 import java.util.Optional;
 
-// security needs
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 

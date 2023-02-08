@@ -8,10 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.chuistov.springboot.crud.dto.UserDto;
 import ru.chuistov.springboot.crud.entities.Role;
 import ru.chuistov.springboot.crud.entities.User;
-import ru.chuistov.springboot.crud.repositories.RoleRepository;
 import ru.chuistov.springboot.crud.repositories.UserRepository;
 import ru.chuistov.springboot.crud.security.UserDetailsImpl;
-
 import java.util.List;
 import java.util.Optional;
 
