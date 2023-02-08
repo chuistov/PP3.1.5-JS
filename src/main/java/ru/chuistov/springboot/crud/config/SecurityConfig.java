@@ -18,6 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final LoginSuccessHandler loginSuccessHandler;
+    private String loginPage = "/authentication/login";
 
     @Autowired
     public SecurityConfig(UserDetailsServiceImpl userDetailsService,
@@ -30,25 +31,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable() // csrf is disabled to allow JS work properly (no csrf token are generated at front end)
-            .authorizeRequests()
-                .antMatchers(
-                        "/", "/authentication/login", "/authentication/register",
-                        "/css/**", "/js/**", "/error").permitAll() // the only pages accessible by non-authenticated person
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user").hasRole("USER")
-                .antMatchers("/api/**").hasAnyRole("ADMIN", "USER")
-                .anyRequest().authenticated()   // all other pages only after authentication
-            .and()
-            .formLogin()                                // form for entering username and password
-                .loginPage("/authentication/login")     // form page URL
-                .loginProcessingUrl("/process_login")   // URL of page for processing username and password (for Spring Security)
-                .successHandler(loginSuccessHandler) // choosing starting web page depending on user's role
-//                .defaultSuccessUrl("/user", true) // URL to go in case of success
-                .failureUrl("/authentication/login?error") // URL to go after entering wrong username or password
-            .and()
-            .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/authentication/login");
+                .authorizeRequests()
+                    .antMatchers(
+                            "/", loginPage, "/authentication/register",
+                            "/css/**", "/js/**", "/error").permitAll() // the only pages accessible by non-authenticated person
+                    .antMatchers("/admin/**").hasRole("ADMIN")
+                    .antMatchers("/user").hasRole("USER")
+                    .antMatchers("/api/**").hasAnyRole("ADMIN", "USER")
+                    .anyRequest().authenticated()   // all other pages only after authentication
+                .and()
+                .formLogin()                                // form for entering username and password
+                    .loginPage(loginPage)     // form page URL
+                    .loginProcessingUrl("/process_login")   // URL of page for processing username and password (for Spring Security)
+                    .successHandler(loginSuccessHandler) // choosing starting web page depending on user's role
+    //                .defaultSuccessUrl("/user", true) // URL to go in case of success
+                    .failureUrl("/authentication/login?error") // URL to go after entering wrong username or password
+                .and()
+                .logout()
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl(loginPage);
     }
 
     @Bean

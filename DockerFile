@@ -1,0 +1,3 @@
+FROM openjdk:17
+ADD /target/PP3_1_2-0.0.1-SNAPSHOT.war backend.war
+ENTRYPOINT ["java", "-war", "backend.war"]
