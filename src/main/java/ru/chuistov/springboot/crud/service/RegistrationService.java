@@ -1,4 +1,4 @@
-package ru.chuistov.springboot.crud.services;
+package ru.chuistov.springboot.crud.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

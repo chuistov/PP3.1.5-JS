@@ -5,7 +5,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import ru.chuistov.springboot.crud.entities.User;
 import java.util.Collection;
 
-// security needs
 public class UserDetailsImpl implements UserDetails {
 
     private final User user;

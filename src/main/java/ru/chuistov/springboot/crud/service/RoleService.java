@@ -1,4 +1,4 @@
-package ru.chuistov.springboot.crud.services;
+package ru.chuistov.springboot.crud.service;
 
 import org.springframework.stereotype.Service;
 import ru.chuistov.springboot.crud.dto.RoleDto;

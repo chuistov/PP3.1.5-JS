@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.chuistov.springboot.crud.dto.RoleDto;
-import ru.chuistov.springboot.crud.services.RoleService;
+import ru.chuistov.springboot.crud.service.RoleService;
 import java.util.List;
 
 @RestController

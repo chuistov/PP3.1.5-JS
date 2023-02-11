@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.chuistov.springboot.crud.dto.UserDto;
 import ru.chuistov.springboot.crud.entities.User;
-import ru.chuistov.springboot.crud.services.UserService;
+import ru.chuistov.springboot.crud.service.UserService;
 import java.util.List;
 
 @RestController

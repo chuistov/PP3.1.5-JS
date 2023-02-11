@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.chuistov.springboot.crud.entities.Role;
 import ru.chuistov.springboot.crud.entities.User;
-import ru.chuistov.springboot.crud.services.RegistrationService;
+import ru.chuistov.springboot.crud.service.RegistrationService;
 import java.util.List;
 
 @Controller
